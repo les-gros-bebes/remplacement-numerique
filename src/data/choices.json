@@ -1,0 +1,48 @@
+[
+    {
+        "place": "place_one",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "choice n1", "score_value": 10 },
+                    { "label": "choice n2", "score_value": 5 },
+                    { "label": "choice n3", "score_value": 15 },
+                    { "label": "choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "choice n1", "score_value": 10 },
+                    { "label": "choice n2", "score_value": 5 },
+                    { "label": "choice n3", "score_value": 15 },
+                    { "label": "choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    },
+    {
+        "place": "place_two",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "choice n1", "score_value": 10 },
+                    { "label": "choice n2", "score_value": 5 },
+                    { "label": "choice n3", "score_value": 15 },
+                    { "label": "choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "choice n1", "score_value": 10 },
+                    { "label": "choice n2", "score_value": 5 },
+                    { "label": "choice n3", "score_value": 15 },
+                    { "label": "choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    }
+]
