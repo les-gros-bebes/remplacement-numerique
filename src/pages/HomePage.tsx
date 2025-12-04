@@ -1,11 +1,21 @@
 // src/pages/HomePage.tsx
 
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "../assets/planecole.png";
 
-const HOTSPOTS = [
+type Hotspot = {
+  id: string;
+  label: string;
+  route: string;
+  left: string;
+  top: string;
+  width: string;
+  height: string;
+};
+
+const HOTSPOTS: Hotspot[] = [
   {
     id: "class-libreoffice",
     label: "Salle LibreOffice",
@@ -55,24 +65,25 @@ const HOTSPOTS = [
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
       sx={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
+        position: "absolute", // colle au conteneur du layout
+        inset: 0, // top:0, right:0, bottom:0, left:0
         overflow: "hidden",
         backgroundImage: `url(${lyceeMap})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* TEXTES SUPERPOSÉS */}
+      {/* HEADER */}
       <Box
         sx={{
           position: "absolute",
-          top: 20,
+          top: 16,
           left: "50%",
           transform: "translateX(-50%)",
           textAlign: "center",
@@ -81,10 +92,11 @@ const HomePage: React.FC = () => {
           py: 2,
           borderRadius: 3,
           backdropFilter: "blur(4px)",
+          maxWidth: "90vw",
         }}
       >
         <Typography
-          variant="h3"
+          variant="h4"
           component="h1"
           color="white"
           sx={{ textShadow: "0px 0px 6px rgba(0,0,0,0.8)" }}
@@ -93,7 +105,7 @@ const HomePage: React.FC = () => {
         </Typography>
 
         <Typography
-          variant="subtitle1"
+          variant="subtitle2"
           color="white"
           sx={{ mt: 1, textShadow: "0px 0px 4px rgba(0,0,0,0.7)" }}
         >
@@ -101,44 +113,94 @@ const HomePage: React.FC = () => {
         </Typography>
       </Box>
 
-      {/* HOTSPOTS CLIQUABLES */}
-      {HOTSPOTS.map((spot) => (
-        <Box
-          key={spot.id}
-          onClick={() => navigate(spot.route)}
-          sx={{
-            position: "absolute",
-            left: spot.left,
-            top: spot.top,
-            width: spot.width,
-            height: spot.height,
-            cursor: "pointer",
-            transition: "0.2s ease",
-            borderRadius: 2,
-            "&:hover": {
-              backgroundColor: "rgba(0,0,0,0.2)",
-              boxShadow: "0 0 10px rgba(0,0,0,0.4)",
-            },
-          }}
-        >
-          {/* LABELS OPTIONNELS */}
+      {/* HOTSPOTS desktop */}
+      {!isSmall &&
+        HOTSPOTS.map((spot) => (
           <Box
+            key={spot.id}
+            onClick={() => navigate(spot.route)}
             sx={{
               position: "absolute",
-              left: 6,
-              bottom: 6,
-              backgroundColor: "rgba(0,0,0,0.6)",
-              px: 1,
-              py: 0.3,
-              borderRadius: 1,
+              left: spot.left,
+              top: spot.top,
+              width: spot.width,
+              height: spot.height,
+              cursor: "pointer",
+              transition: "0.2s ease",
+              borderRadius: 2,
+              "&:hover": {
+                backgroundColor: "rgba(0,0,0,0.2)",
+                boxShadow: "0 0 10px rgba(0,0,0,0.4)",
+              },
             }}
           >
-            <Typography variant="caption" color="white">
-              {spot.label}
-            </Typography>
+            <Box
+              sx={{
+                position: "absolute",
+                left: 6,
+                bottom: 6,
+                backgroundColor: "rgba(0,0,0,0.6)",
+                px: 1,
+                py: 0.3,
+                borderRadius: 1,
+              }}
+            >
+              <Typography variant="caption" color="white">
+                {spot.label}
+              </Typography>
+            </Box>
+          </Box>
+        ))}
+
+      {/* HOTSPOTS mobile en grille en bas */}
+      {isSmall && (
+        <Box
+          sx={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            p: 2,
+            pt: 3,
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.0))",
+          }}
+        >
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 1.5,
+            }}
+          >
+            {HOTSPOTS.map((spot) => (
+              <Box
+                key={spot.id}
+                onClick={() => navigate(spot.route)}
+                sx={{
+                  cursor: "pointer",
+                  borderRadius: 2,
+                  backgroundColor: "rgba(0,0,0,0.7)",
+                  px: 1.5,
+                  py: 1,
+                  textAlign: "center",
+                  "&:hover": {
+                    backgroundColor: "rgba(0,0,0,0.9)",
+                  },
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  color="white"
+                  sx={{ fontWeight: 600 }}
+                >
+                  {spot.label}
+                </Typography>
+              </Box>
+            ))}
           </Box>
         </Box>
-      ))}
+      )}
     </Box>
   );
 };
