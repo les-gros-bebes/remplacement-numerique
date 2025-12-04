@@ -4,6 +4,7 @@ import { getDialogFromLocation } from "../utils/jsonContentLoader";
 type Message = {
   person: string;
   message: string;
+  triggerChoice: number | boolean
 };
 
 type Conversation = {
@@ -11,12 +12,17 @@ type Conversation = {
   conversation: Message[];
 };
 
-export default function DialogTester() {
+type DialogProps = {
+  locationNumber: number;
+  conversationIndex: number;
+};
+
+export default function Dialog({ locationNumber, conversationIndex }: DialogProps) {
   const [dialog, setDialog] = useState<Conversation | null>(null);
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
-    const data = getDialogFromLocation(2, 0) as Conversation | null;
+    const data = getDialogFromLocation(locationNumber, conversationIndex) as Conversation | null;
 
     if (data) {
       setDialog(data);
@@ -30,6 +36,9 @@ export default function DialogTester() {
   const current = messages[messageIndex];
 
   const handleNext = () => {
+    if (current.triggerChoice != false) {
+      
+    }
     if (messageIndex < messages.length - 1) {
       setMessageIndex(messageIndex + 1);
     } else {
