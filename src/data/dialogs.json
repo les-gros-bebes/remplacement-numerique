@@ -1,0 +1,40 @@
+[
+    {
+        "place": "place_one",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "hello !" },
+                    { "person": "person2", "message": "hello ! how are you ?" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "good morning !" },
+                    { "person": "person2", "message": "hey ! it's nice to see you" }
+                ]
+            }
+        ]
+    },
+    {
+        "place": "place_two",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "where are we ?" },
+                    { "person": "person2", "message": "we are in the place 2 !" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "are we in the place 2 ?" },
+                    { "person": "person2", "message": "yes we are" }
+                ]
+            }
+        ]
+    }
+]
