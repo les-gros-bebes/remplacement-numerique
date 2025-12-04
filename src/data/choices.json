@@ -1,46 +1,138 @@
 [
     {
-        "place": "place_one",
+        "place": "school",
         "choices": [
             {
                 "id": 1,
                 "choice": [
-                    { "label": "choice n1", "score_value": 10 },
-                    { "label": "choice n2", "score_value": 5 },
-                    { "label": "choice n3", "score_value": 15 },
-                    { "label": "choice n4", "score_value": 20}
+                    { "label": "school choice n1", "score_value": 10 },
+                    { "label": "school choice n2", "score_value": 5 },
+                    { "label": "school choice n3", "score_value": 15 },
+                    { "label": "school choice n4", "score_value": 20}
                 ]
             },
             {
                 "id": 2,
                 "choice": [
-                    { "label": "choice n1", "score_value": 10 },
-                    { "label": "choice n2", "score_value": 5 },
-                    { "label": "choice n3", "score_value": 15 },
-                    { "label": "choice n4", "score_value": 20}
+                    { "label": "school choice n1", "score_value": 10 },
+                    { "label": "school choice n2", "score_value": 5 },
+                    { "label": "school choice n3", "score_value": 15 },
+                    { "label": "school choice n4", "score_value": 20}
                 ]
             }
         ]
     },
     {
-        "place": "place_two",
+        "place": "courtyard",
         "choices": [
             {
                 "id": 1,
                 "choice": [
-                    { "label": "choice n1", "score_value": 10 },
-                    { "label": "choice n2", "score_value": 5 },
-                    { "label": "choice n3", "score_value": 15 },
-                    { "label": "choice n4", "score_value": 20}
+                    { "label": "courtyard choice n1", "score_value": 10 },
+                    { "label": "courtyard choice n2", "score_value": 5 },
+                    { "label": "courtyard choice n3", "score_value": 15 },
+                    { "label": "courtyard choice n4", "score_value": 20}
                 ]
             },
             {
                 "id": 2,
                 "choice": [
-                    { "label": "choice n1", "score_value": 10 },
-                    { "label": "choice n2", "score_value": 5 },
-                    { "label": "choice n3", "score_value": 15 },
-                    { "label": "choice n4", "score_value": 20}
+                    { "label": "courtyard choice n1", "score_value": 10 },
+                    { "label": "courtyard choice n2", "score_value": 5 },
+                    { "label": "courtyard choice n3", "score_value": 15 },
+                    { "label": "courtyard choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    },
+    {
+        "place": "classroom",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "classroom choice n1", "score_value": 10 },
+                    { "label": "classroom choice n2", "score_value": 5 },
+                    { "label": "classroom choice n3", "score_value": 15 },
+                    { "label": "classroom choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "classroom choice n1", "score_value": 10 },
+                    { "label": "classroom choice n2", "score_value": 5 },
+                    { "label": "classroom choice n3", "score_value": 15 },
+                    { "label": "classroom choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    },
+    {
+        "place": "sports_hall",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "sports_hall choice n1", "score_value": 10 },
+                    { "label": "sports_hall choice n2", "score_value": 5 },
+                    { "label": "sports_hall choice n3", "score_value": 15 },
+                    { "label": "sports_hall choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "sports_hall choice n1", "score_value": 10 },
+                    { "label": "sports_hall choice n2", "score_value": 5 },
+                    { "label": "sports_hall choice n3", "score_value": 15 },
+                    { "label": "sports_hall choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    },
+    {
+        "place": "library",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "library choice n1", "score_value": 10 },
+                    { "label": "library choice n2", "score_value": 5 },
+                    { "label": "library choice n3", "score_value": 15 },
+                    { "label": "library choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "library choice n1", "score_value": 10 },
+                    { "label": "library choice n2", "score_value": 5 },
+                    { "label": "library choice n3", "score_value": 15 },
+                    { "label": "library choice n4", "score_value": 20}
+                ]
+            }
+        ]
+    },
+    {
+        "place": "principal_office",
+        "choices": [
+            {
+                "id": 1,
+                "choice": [
+                    { "label": "principal_office choice n1", "score_value": 10 },
+                    { "label": "principal_office choice n2", "score_value": 5 },
+                    { "label": "principal_office choice n3", "score_value": 15 },
+                    { "label": "principal_office choice n4", "score_value": 20}
+                ]
+            },
+            {
+                "id": 2,
+                "choice": [
+                    { "label": "principal_office choice n1", "score_value": 10 },
+                    { "label": "principal_office choice n2", "score_value": 5 },
+                    { "label": "principal_office choice n3", "score_value": 15 },
+                    { "label": "principal_office choice n4", "score_value": 20}
                 ]
             }
         ]
