@@ -69,7 +69,8 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [introDone, setIntroDone] = useState(false);
+  const INTRO_ENABLED = true;
+  const [introDone, setIntroDone] = useState(!INTRO_ENABLED);
 
   return (
     <Box
@@ -82,7 +83,7 @@ const HomePage: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* HEADER */}
+      {/* HEADER (actuellement vide / commenté) */}
       <Box
         sx={{
           position: "absolute",
@@ -98,6 +99,7 @@ const HomePage: React.FC = () => {
           maxWidth: "90vw",
         }}
       >
+        {/*
         <Typography
           variant="h4"
           component="h1"
@@ -114,6 +116,7 @@ const HomePage: React.FC = () => {
         >
           Clique sur un bâtiment ou un espace pour lancer l’activité
         </Typography>
+        */}
       </Box>
 
       {/* HOTSPOTS desktop – seulement après l’intro */}
@@ -206,8 +209,10 @@ const HomePage: React.FC = () => {
         </Box>
       )}
 
-      {/* OVERLAY DU MAGICIEN – bloque tout tant que pas fini */}
-      {!introDone && <WizardIntro onFinish={() => setIntroDone(true)} />}
+      {/* OVERLAY DU MAGICIEN – seulement si l’intro est activée et pas encore finie */}
+      {INTRO_ENABLED && !introDone && (
+        <WizardIntro onFinish={() => setIntroDone(true)} />
+      )}
     </Box>
   );
 };

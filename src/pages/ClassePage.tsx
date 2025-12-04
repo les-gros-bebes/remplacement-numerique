@@ -1,6 +1,7 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
 import bgClasse from "/assets/salledecours.png";
+import Dialog from "../components/Dialog";
 
 const ClassePage: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const ClassePage: React.FC = () => {
       backgroundImage={bgClasse}
     >
       {/* Contenu spécifique de l’activité LibreOffice ici */}
+      <Dialog locationNumber={2} conversationIndex={0} />
     </RoomLayout>
   );
 };

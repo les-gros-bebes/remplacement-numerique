@@ -25,6 +25,9 @@ declare module "@mui/material/styles" {
 }
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "Autour One, sans-serif",
+  },
   colorSchemes: {
     light: lightThemeAvailable && {
       palette: {
