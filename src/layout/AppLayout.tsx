@@ -15,7 +15,7 @@ export default function AppLayout() {
               textDecoration: "none",
             }}
           >
-            Quick Frontend Template
+            Remplacement Numérique
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
