@@ -1,6 +1,8 @@
+// src/components/WizardIntro.tsx
+
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Paper } from "@mui/material";
-import wizardImg from "/assets/magicien.png";
+import wizardImg from "/assets/magicien.png"; // adapte le chemin
 
 type WizardIntroProps = {
   onFinish: () => void;
@@ -31,7 +33,7 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
         clearInterval(interval);
         setIsTyping(false);
       }
-    }, 25); // vitesse de "chargement" du texte
+    }, 25);
 
     return () => clearInterval(interval);
   }, [step]);
@@ -52,27 +54,37 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
         position: "absolute",
         inset: 0,
         zIndex: 10,
-        backgroundColor: "rgba(0,0,0,0.6)",
+        backgroundColor: "rgba(0,0,0,0.35)", // léger voile
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "center",
         justifyContent: "center",
-        p: 2,
+        px: { xs: 2, md: 6 },
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          gap: 2,
-          alignItems: "flex-end",
-          maxWidth: 900,
+          position: "relative",
           width: "100%",
+          maxWidth: 1100,
+          height: "80vh",
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        {/* Magicien */}
+        {/* Personnage à gauche, un peu coupé en bas */}
+        {/* Personnage à gauche, très grand et tronqué */}
         <Box
           sx={{
-            width: { xs: 120, sm: 160, md: 200 },
-            flexShrink: 0,
+            position: "absolute",
+            left: "-6%", // 👈 pousse plus à gauche
+            bottom: "-50px", // 👈 coupe encore plus le bas
+            height: "80vh", // hauteur visible (fenêtre de découpe)
+            width: { xs: "45%", md: "38%" }, // zone large pour que le perso occupe bien la gauche
+            overflow: "hidden", // coupe proprement
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            zIndex: 2,
           }}
         >
           <Box
@@ -80,32 +92,56 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
             src={wizardImg}
             alt="Magicien du numérique responsable"
             sx={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              filter: "drop-shadow(0 0 10px rgba(0,0,0,0.7))",
+              height: "150%", // 👈 plus grand (augmente si tu veux)
+              width: "auto",
+              transform: "translateY(12%) translateX(-8%)",
+              // Y = pousse vers le bas → tranche plus
+              // X = pousse légèrement vers la gauche pour compenser le centrage
+              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
             }}
           />
         </Box>
 
-        {/* Bulle de dialogue */}
+        {/* Bandereau / panneau à droite */}
         <Paper
-          elevation={6}
+          elevation={8}
           sx={{
-            flex: 1,
-            p: 2,
-            borderRadius: 3,
-            backgroundColor: "rgba(255,255,255,0.95)",
+            ml: { xs: 10, md: "30%" },
+            width: { xs: "70%", md: "60%" },
+            minHeight: { xs: 220, md: 280 },
+            p: { xs: 2.5, md: 4 },
+            backgroundColor: "#FDF5FF", // fond crème rosé
           }}
         >
           <Typography
-            variant="subtitle2"
-            sx={{ fontWeight: 700, mb: 1, color: "#555" }}
+            variant="h4"
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              color: "#6B4AA5",
+            }}
           >
-            Magicien du Lycée numérique
+            Remplacement numérique
           </Typography>
 
-          <Typography variant="body1" sx={{ minHeight: 80, color: "#555" }}>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              mb: 2,
+              color: "#7A5BB5",
+            }}
+          >
+            Comment un établissement scolaire peut réduire ses dépendances
+            numériques ?
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              minHeight: 80,
+              color: "#4A3B6D",
+            }}
+          >
             {displayedText}
             {isTyping && <span>|</span>}
           </Typography>
@@ -114,16 +150,23 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-              mt: 2,
-              gap: 1,
+              mt: 3,
             }}
           >
             <Button
               variant="contained"
               onClick={handleNext}
               disabled={isTyping}
+              sx={{
+                textTransform: "none",
+                px: 3,
+                backgroundColor: "#6B4AA5",
+                "&:hover": {
+                  backgroundColor: "#584092",
+                },
+              }}
             >
-              {isLastStep ? "Commencer l’aventure" : "Suivant"}
+              {isLastStep ? "Sélectionner ton parcours" : "Suivant"}
             </Button>
           </Box>
         </Paper>
