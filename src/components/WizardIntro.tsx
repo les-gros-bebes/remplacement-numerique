@@ -55,7 +55,6 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
     const lastOpen = sliced.lastIndexOf("<");
     const lastClose = sliced.lastIndexOf(">");
 
-    // Si on est au milieu d'une balise => on n'affiche pas la balise tant qu'elle n'est pas complète
     if (lastOpen > lastClose) {
       sliced = sliced.slice(0, lastOpen);
     }
@@ -71,74 +70,62 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
         position: "absolute",
         inset: 0,
         zIndex: 10,
-        backgroundColor: "rgba(0,0,0,0.35)", // léger voile
+        backgroundColor: "rgba(0,0,0,0.35)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        px: { xs: 2, md: 6 },
+        px: { xs: 1.5, sm: 2, md: 6 },
+        py: { xs: 2, md: 0 },
       }}
     >
       <Box
         sx={{
           position: "relative",
-          width: "140%",
+          width: "100%",
           maxWidth: 1100,
-          height: "80vh",
+          minHeight: { xs: "auto", md: "70vh" },
           display: "flex",
+          flexDirection: { xs: "column-reverse", md: "row" }, // mobile : texte au-dessus
           alignItems: "center",
+          justifyContent: "space-between",
+          gap: { xs: 2, md: 4 },
         }}
       >
-        {/* Personnage à gauche, grand, sans box qui le coupe */}
-        <Box
-          sx={{
-            position: "absolute",
-            left: { xs: "-18%", md: "-16%" }, // plus ou moins à gauche
-            bottom: -180, // ancré en bas du viewport
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            zIndex: 2,
-          }}
-        >
-          <Box
-            component="img"
-            src={wizardImg}
-            alt="Magicien du numérique responsable"
-            sx={{
-              height: { xs: "80vh", md: "95vh" }, // le magicien contrôle la hauteur
-              width: "auto",
-              // si tu veux qu'il soit un peu coupé en bas :
-              // tu peux soit augmenter sa hauteur, soit descendre un peu:
-              // transform: "translateY(5%)",
-              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
-            }}
-          />
-        </Box>
-
-        {/* Bandereau / panneau à droite */}
+        {/* Panneau texte */}
         <Paper
           elevation={8}
           sx={{
-            ml: { xs: 10, md: "30%" },
-            width: { xs: "70%", md: "60%" },
-            minHeight: { xs: 220, md: 280 },
+            flex: { xs: "1 1 auto", md: "0 0 55%" },
+            width: "100%",
+            minHeight: { xs: 260, md: 320 },
             p: { xs: 2.5, md: 4 },
-            backgroundColor: "#FDF5FF", // fond crème rosé
+            backgroundColor: "#FDF5FF",
+
+            // 🔥 Pour caler le bouton en bas :
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
+          {/* Zone texte */}
           <Typography
             variant="body1"
-            sx={{ minHeight: 80, color: "#7A5BB5" }}
+            sx={{
+              color: "#7A5BB5",
+              fontSize: { xs: "0.95rem", md: "1.05rem" },
+              flexGrow: 1, // ← pousse le bouton vers le bas
+            }}
             dangerouslySetInnerHTML={{
               __html: displayedText + (isTyping ? "<span>|</span>" : ""),
             }}
           />
 
+          {/* Zone bouton (reste collée en bas) */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-              mt: 3,
+              mt: 2,
             }}
           >
             <Button
@@ -152,12 +139,35 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
                 "&:hover": {
                   backgroundColor: "#584092",
                 },
+                fontSize: { xs: "0.85rem", md: "0.95rem" },
               }}
             >
               {isLastStep ? "Commencer ton aventure" : "Suivant"}
             </Button>
           </Box>
         </Paper>
+
+        {/* Magicien */}
+        <Box
+          sx={{
+            flex: { xs: "0 0 auto", md: "0 0 40%" },
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-start" },
+            alignItems: "flex-end",
+            mb: { xs: 1, md: 0 },
+          }}
+        >
+          <Box
+            component="img"
+            src={wizardImg}
+            alt="Magicien du numérique responsable"
+            sx={{
+              maxHeight: { xs: "35vh", sm: "45vh", md: "70vh" },
+              width: "auto",
+              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
+            }}
+          />
+        </Box>
       </Box>
     </Box>
   );
