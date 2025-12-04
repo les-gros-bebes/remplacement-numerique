@@ -98,22 +98,22 @@ const HomePage: React.FC = () => {
           maxWidth: "90vw",
         }}
       >
-        <Typography
+        {/* <Typography
           variant="h4"
           component="h1"
           color="white"
           sx={{ textShadow: "0px 0px 6px rgba(0,0,0,0.8)" }}
         >
           Lycée numérique responsable
-        </Typography>
+        </Typography> */}
 
-        <Typography
+        {/* <Typography
           variant="subtitle2"
           color="white"
           sx={{ mt: 1, textShadow: "0px 0px 4px rgba(0,0,0,0.7)" }}
         >
           Clique sur un bâtiment ou un espace pour lancer l’activité
-        </Typography>
+        </Typography> */}
       </Box>
 
       {/* HOTSPOTS desktop – seulement après l’intro */}

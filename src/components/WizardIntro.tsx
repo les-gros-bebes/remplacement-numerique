@@ -9,10 +9,10 @@ type WizardIntroProps = {
 };
 
 const MESSAGES: string[] = [
-  "Bonjour, jeune apprenti du numérique responsable !",
-  "Aujourd’hui, tu vas explorer le lycée et découvrir comment utiliser le numérique de manière plus éthique, écologique et sécurisée.",
-  "Clique ensuite sur les différents bâtiments pour relever des défis et gagner en expérience.",
-  "Quand tu es prêt, je te laisse commencer ton aventure !",
+  "Salutations, jeunes esprits du lycée Michael Gutnic…",
+  "Je viens d’un monde où chaque humain contrôle son destin numérique. <br />Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève. <br> Où vos gestes ne nourrissent pas d’immenses machines à profiler. <br> Où le doom-scroll n’existe pas. <br> Ce monde… vous en rêvez, n’est-ce pas ?",
+  "Ce monde est <b>possible</b>.",
+  "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce <s>Grand Remplacement Numérique</s>. Euh non, pardons je m’égare.<br /> Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.",
 ];
 
 const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
@@ -28,12 +28,15 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
     let index = 0;
     const interval = setInterval(() => {
       index++;
-      setDisplayedText(fullText.slice(0, index));
+
+      const safe = safeHtmlTyping(fullText, index);
+      setDisplayedText(safe);
+
       if (index >= fullText.length) {
         clearInterval(interval);
         setIsTyping(false);
       }
-    }, 25);
+    }, 15);
 
     return () => clearInterval(interval);
   }, [step]);
@@ -45,6 +48,20 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
       onFinish();
     }
   };
+
+  function safeHtmlTyping(fullText: string, index: number): string {
+    let sliced = fullText.slice(0, index);
+
+    const lastOpen = sliced.lastIndexOf("<");
+    const lastClose = sliced.lastIndexOf(">");
+
+    // Si on est au milieu d'une balise => on n'affiche pas la balise tant qu'elle n'est pas complète
+    if (lastOpen > lastClose) {
+      sliced = sliced.slice(0, lastOpen);
+    }
+
+    return sliced;
+  }
 
   const isLastStep = step === MESSAGES.length - 1;
 
@@ -64,23 +81,19 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
       <Box
         sx={{
           position: "relative",
-          width: "100%",
+          width: "140%",
           maxWidth: 1100,
           height: "80vh",
           display: "flex",
           alignItems: "center",
         }}
       >
-        {/* Personnage à gauche, un peu coupé en bas */}
-        {/* Personnage à gauche, très grand et tronqué */}
+        {/* Personnage à gauche, grand, sans box qui le coupe */}
         <Box
           sx={{
             position: "absolute",
-            left: "-6%", // 👈 pousse plus à gauche
-            bottom: "-50px", // 👈 coupe encore plus le bas
-            height: "80vh", // hauteur visible (fenêtre de découpe)
-            width: { xs: "45%", md: "38%" }, // zone large pour que le perso occupe bien la gauche
-            overflow: "hidden", // coupe proprement
+            left: { xs: "-18%", md: "-16%" }, // plus ou moins à gauche
+            bottom: -180, // ancré en bas du viewport
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",
@@ -92,11 +105,11 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
             src={wizardImg}
             alt="Magicien du numérique responsable"
             sx={{
-              height: "150%", // 👈 plus grand (augmente si tu veux)
+              height: { xs: "80vh", md: "95vh" }, // le magicien contrôle la hauteur
               width: "auto",
-              transform: "translateY(12%) translateX(-8%)",
-              // Y = pousse vers le bas → tranche plus
-              // X = pousse légèrement vers la gauche pour compenser le centrage
+              // si tu veux qu'il soit un peu coupé en bas :
+              // tu peux soit augmenter sa hauteur, soit descendre un peu:
+              // transform: "translateY(5%)",
               filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
             }}
           />
@@ -114,37 +127,12 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
           }}
         >
           <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              color: "#6B4AA5",
-            }}
-          >
-            Remplacement numérique
-          </Typography>
-
-          <Typography
-            variant="subtitle1"
-            sx={{
-              mb: 2,
-              color: "#7A5BB5",
-            }}
-          >
-            Comment un établissement scolaire peut réduire ses dépendances
-            numériques ?
-          </Typography>
-
-          <Typography
             variant="body1"
-            sx={{
-              minHeight: 80,
-              color: "#4A3B6D",
+            sx={{ minHeight: 80, color: "#7A5BB5" }}
+            dangerouslySetInnerHTML={{
+              __html: displayedText + (isTyping ? "<span>|</span>" : ""),
             }}
-          >
-            {displayedText}
-            {isTyping && <span>|</span>}
-          </Typography>
+          />
 
           <Box
             sx={{
@@ -166,7 +154,7 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
                 },
               }}
             >
-              {isLastStep ? "Sélectionner ton parcours" : "Suivant"}
+              {isLastStep ? "Commencer ton aventure" : "Suivant"}
             </Button>
           </Box>
         </Paper>
