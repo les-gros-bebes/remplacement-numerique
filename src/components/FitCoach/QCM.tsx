@@ -36,7 +36,6 @@ const QCM: React.FC<QCMProps> = ({ questions, onComplete, onBack }) => {
   const handleBack = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setProgress(((currentQuestionIndex - 1) / questions.length) * 100);
     } else {
       onBack();
     }

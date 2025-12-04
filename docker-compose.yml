@@ -1,7 +1,7 @@
 services:
-  quick-frontend-template:
-    container_name: quick-frontend-template
-    image: quick-frontend-template:1.0
+  remplacement-numerique:
+    container_name: remplacement-numerique
+    image: remplacement-numerique:1.0
     build: .
     # env_file: .env
     ports:

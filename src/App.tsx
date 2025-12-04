@@ -1,47 +1,26 @@
-import { useState } from "react";
-import viteLogo from "/vite.svg";
-import "./index.css";
-import FitCoach from "./components/FitCoach/FitCoach";
+import { Routes, Route } from "react-router";
+import AppLayout from "./layout/AppLayout";
+import HomePage from "./pages/HomePage";
+import ClassePage from "./pages/ClassePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import BureauPage from "./pages/BureauPage";
+import CdiPage from "./pages/CdiPage";
+import GymnasePage from "./pages/GymnasePage";
+import PreauPage from "./pages/PreauPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [view, setView] = useState<"home" | "snake" | "fitcoach">("home");
-
   return (
-    <>
-      {view === "home" && (
-        <div>
-          <div>
-            <a href="https://vite.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-          </div>
-          <h1>Vite + React</h1>
-          <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>
-              count is {count}
-            </button>
-            <p>
-              Edit <code>src/App.tsx</code> and save to test HMR
-            </p>
-          </div>
-          <div className="card flex gap-4 justify-center">
-            <button onClick={() => setView("snake")}>Play Snake Game 🐍</button>
-            <button
-              onClick={() => setView("fitcoach")}
-              className="bg-[#0082C3] text-white"
-            >
-              Fit-Coach AI 🏋️
-            </button>
-          </div>
-          <p className="read-the-docs">
-            Click on the Vite and React logos to learn more
-          </p>
-        </div>
-      )}
-
-      {view === "fitcoach" && <FitCoach />}
-    </>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route path="home" element={<HomePage />} />
+        <Route path="bureau" element={<BureauPage />} />
+        <Route path="cdi" element={<CdiPage />} />
+        <Route path="classe" element={<ClassePage />} />
+        <Route path="gymnase" element={<GymnasePage />} />
+        <Route path="preau" element={<PreauPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
 
