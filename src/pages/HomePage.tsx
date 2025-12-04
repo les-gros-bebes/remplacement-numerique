@@ -1,30 +1,11 @@
 // src/pages/HomePage.tsx
 
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
-import lyceeMap from "../assets/planecole.png"; // <- adapte le chemin
+import lyceeMap from "../assets/planecole.png";
 
-type HotspotId =
-  | "class-libreoffice"
-  | "class-accessibility"
-  | "gym"
-  | "yard"
-  | "cdi";
-
-interface Hotspot {
-  id: HotspotId;
-  label: string;
-  route: string;
-  // valeurs en pourcentage (par rapport à l'image 2048x1175)
-  left: string;
-  top: string;
-  width: string;
-  height: string;
-}
-
-// Coords calculées à partir de ton image (approx)
-const HOTSPOTS: Hotspot[] = [
+const HOTSPOTS = [
   {
     id: "class-libreoffice",
     label: "Salle LibreOffice",
@@ -76,84 +57,88 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "background.default", py: 4 }}>
-      <Container maxWidth="lg">
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="h3" component="h1" gutterBottom>
-            Lycée numérique responsable
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            Clique sur un espace du lycée pour découvrir un atelier ou un défi
-            autour du numérique responsable.
-          </Typography>
-        </Box>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+        backgroundImage: `url(${lyceeMap})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* TEXTES SUPERPOSÉS */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 20,
+          left: "50%",
+          transform: "translateX(-50%)",
+          textAlign: "center",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          px: 3,
+          py: 2,
+          borderRadius: 3,
+          backdropFilter: "blur(4px)",
+        }}
+      >
+        <Typography
+          variant="h3"
+          component="h1"
+          color="white"
+          sx={{ textShadow: "0px 0px 6px rgba(0,0,0,0.8)" }}
+        >
+          Lycée numérique responsable
+        </Typography>
 
-        {/* Conteneur de la carte */}
+        <Typography
+          variant="subtitle1"
+          color="white"
+          sx={{ mt: 1, textShadow: "0px 0px 4px rgba(0,0,0,0.7)" }}
+        >
+          Clique sur un bâtiment ou un espace pour lancer l’activité
+        </Typography>
+      </Box>
+
+      {/* HOTSPOTS CLIQUABLES */}
+      {HOTSPOTS.map((spot) => (
         <Box
+          key={spot.id}
+          onClick={() => navigate(spot.route)}
           sx={{
-            position: "relative",
-            width: "100%",
-            maxWidth: 1200,
-            mx: "auto",
-            borderRadius: 3,
-            overflow: "hidden",
-            boxShadow: 4,
-            backgroundImage: `url(${lyceeMap})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            // garde les proportions de l'image d'origine (2048x1175)
-            aspectRatio: "2048 / 1175",
+            position: "absolute",
+            left: spot.left,
+            top: spot.top,
+            width: spot.width,
+            height: spot.height,
+            cursor: "pointer",
+            transition: "0.2s ease",
+            borderRadius: 2,
+            "&:hover": {
+              backgroundColor: "rgba(0,0,0,0.2)",
+              boxShadow: "0 0 10px rgba(0,0,0,0.4)",
+            },
           }}
         >
-          {/* Overlays cliquables */}
-          {HOTSPOTS.map((spot) => (
-            <Box
-              key={spot.id}
-              onClick={() => navigate(spot.route)}
-              sx={{
-                position: "absolute",
-                left: spot.left,
-                top: spot.top,
-                width: spot.width,
-                height: spot.height,
-                cursor: "pointer",
-                // Overlay semi-transparent pour debug / UX
-                bgcolor: "rgba(0, 0, 0, 0.0)",
-                "&:hover": {
-                  bgcolor: "rgba(0, 0, 0, 0.18)",
-                  boxShadow: 6,
-                },
-                transition: "background-color 0.2s ease, box-shadow 0.2s ease",
-              }}
-            >
-              {/* Petit label dans le coin en bas à gauche */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  left: 8,
-                  bottom: 8,
-                  px: 1,
-                  py: 0.5,
-                  borderRadius: 999,
-                  bgcolor: "rgba(0, 0, 0, 0.6)",
-                }}
-              >
-                <Typography variant="caption" color="common.white">
-                  {spot.label}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
+          {/* LABELS OPTIONNELS */}
+          <Box
+            sx={{
+              position: "absolute",
+              left: 6,
+              bottom: 6,
+              backgroundColor: "rgba(0,0,0,0.6)",
+              px: 1,
+              py: 0.3,
+              borderRadius: 1,
+            }}
+          >
+            <Typography variant="caption" color="white">
+              {spot.label}
+            </Typography>
+          </Box>
         </Box>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="caption" color="text.secondary">
-            Les zones sombres au survol sont temporaires pour visualiser les
-            zones cliquables – tu pourras les rendre totalement invisibles une
-            fois le design final validé.
-          </Typography>
-        </Box>
-      </Container>
+      ))}
     </Box>
   );
 };
