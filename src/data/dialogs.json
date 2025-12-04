@@ -3,14 +3,12 @@
         "place": "school",
         "conversations": [
             {
-                "id": 1,
                 "conversation": [
                     { "person": "person1", "message": "hello ! where are we ?" },
                     { "person": "person2", "message": "hello ! we are at the school" }
                 ]
             },
             {
-                "id": 2,
                 "conversation": [
                     { "person": "person1", "message": "good morning ! where are we ?" },
                     { "person": "person2", "message": "good morning ! we are at the school" }

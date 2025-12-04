@@ -5,19 +5,15 @@
             {
                 "id": 1,
                 "choice": [
-                    { "label": "school choice n1", "score_value": 10 },
-                    { "label": "school choice n2", "score_value": 5 },
-                    { "label": "school choice n3", "score_value": 15 },
-                    { "label": "school choice n4", "score_value": 20}
+                    { "question": "school choice n1", "answer": "response 1" },
+                    { "question": "school choice n2", "answer": "response 2" }
                 ]
             },
             {
                 "id": 2,
                 "choice": [
                     { "label": "school choice n1", "score_value": 10 },
-                    { "label": "school choice n2", "score_value": 5 },
-                    { "label": "school choice n3", "score_value": 15 },
-                    { "label": "school choice n4", "score_value": 20}
+                    { "label": "school choice n2", "score_value": 5 }
                 ]
             }
         ]
