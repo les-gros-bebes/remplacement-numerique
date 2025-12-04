@@ -1,19 +1,47 @@
-import { Routes, Route, Navigate } from "react-router";
-import AppLayout from "./layout/AppLayout";
-import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
+import { useState } from "react";
+import viteLogo from "/vite.svg";
+import "./index.css";
+import FitCoach from "./components/FitCoach/FitCoach";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [view, setView] = useState<"home" | "snake" | "fitcoach">("home");
+
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/home" />} />
+    <>
+      {view === "home" && (
+        <div>
+          <div>
+            <a href="https://vite.dev" target="_blank">
+              <img src={viteLogo} className="logo" alt="Vite logo" />
+            </a>
+          </div>
+          <h1>Vite + React</h1>
+          <div className="card">
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <p>
+              Edit <code>src/App.tsx</code> and save to test HMR
+            </p>
+          </div>
+          <div className="card flex gap-4 justify-center">
+            <button onClick={() => setView("snake")}>Play Snake Game 🐍</button>
+            <button
+              onClick={() => setView("fitcoach")}
+              className="bg-[#0082C3] text-white"
+            >
+              Fit-Coach AI 🏋️
+            </button>
+          </div>
+          <p className="read-the-docs">
+            Click on the Vite and React logos to learn more
+          </p>
+        </div>
+      )}
 
-      <Route path="/" element={<AppLayout />}>
-        <Route path="home" element={<HomePage />} />
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+      {view === "fitcoach" && <FitCoach />}
+    </>
   );
 }
 

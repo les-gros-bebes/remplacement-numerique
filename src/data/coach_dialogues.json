@@ -1,0 +1,34 @@
+{
+  "congrats": {
+    "default": [
+      "Pas mal ! Tu as tellement transpiré que tu vas faire rouiller mes haltères ! Allez, file prendre une douche.",
+      "Beau travail ! Même ma grand-mère bougeait moins vite, mais c'est un bon début.",
+      "C'est fini ? Déjà ? Je commençais à peine à m'amuser à te regarder souffrir."
+    ],
+    "weight_loss": [
+      "J'ai vu de la graisse pleurer aujourd'hui. Continue comme ça !",
+      "Tu as brûlé assez de calories pour mériter... un verre d'eau. Santé !",
+      "Si tu continues comme ça, je vais devoir t'acheter des vêtements plus petits. Et je déteste le shopping."
+    ],
+    "muscle_gain": [
+      "Attention en sortant, tes muscles risquent de rester coincés dans la porte.",
+      "Je crois que j'ai vu un biceps pointer le bout de son nez. Ah non, c'est juste une piqûre de moustique.",
+      "N'oublie pas tes protéines, sinon tout ça ne servira qu'à faire joli sur la plage."
+    ],
+    "cardio": [
+      "Ton cœur bat tellement fort que je l'entends d'ici. C'est rassurant, tu es vivant !",
+      "Tu cours vite... tu as volé quelque chose ?",
+      "L'endurance, c'est la vie. Et toi, tu as l'air d'avoir survécu. Bravo."
+    ],
+    "strength": [
+      "Tu es fort comme un bœuf... ou presque. Encore quelques années et on en reparle.",
+      "J'ai failli être impressionné. Failli.",
+      "La force est en toi. Et la sueur aussi, beaucoup de sueur."
+    ],
+    "flexibility": [
+      "Tu es souple comme un roseau... ou un bâton de bois mouillé. C'est un compliment.",
+      "Attention à ne pas te faire un nœud en sortant.",
+      "Le yoga, c'est bien. Mais n'oublie pas de déplier tes jambes avant de partir."
+    ]
+  }
+}
