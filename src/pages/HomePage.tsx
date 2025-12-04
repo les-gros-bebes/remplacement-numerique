@@ -1,3 +1,4 @@
+
 // src/pages/HomePage.tsx
 
 import React from "react";
@@ -67,6 +68,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
 
   return (
     <Box
