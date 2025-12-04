@@ -8,12 +8,7 @@ type WizardIntroProps = {
   onFinish: () => void;
 };
 
-const MESSAGES: string[] = [
-  "Bonjour, jeune apprenti du numérique responsable !",
-  "Aujourd’hui, tu vas explorer le lycée et découvrir comment utiliser le numérique de manière plus éthique, écologique et sécurisée.",
-  "Clique ensuite sur les différents bâtiments pour relever des défis et gagner en expérience.",
-  "Quand tu es prêt, je te laisse commencer ton aventure !",
-];
+const MESSAGES: string[] = [""];
 
 const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
   const [step, setStep] = useState(0);

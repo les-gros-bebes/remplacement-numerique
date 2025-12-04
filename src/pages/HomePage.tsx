@@ -62,6 +62,15 @@ const HOTSPOTS: Hotspot[] = [
     width: "25.4%",
     height: "33.2%",
   },
+  {
+    id: "dev",
+    label: "Dev – snake",
+    route: "/dev",
+    left: "5.0%",
+    top: "5.0%",
+    width: "15.0%",
+    height: "15.0%",
+  },
 ];
 
 const HomePage: React.FC = () => {
