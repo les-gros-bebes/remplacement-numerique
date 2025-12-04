@@ -1,9 +1,10 @@
 // src/pages/HomePage.tsx
 
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "/assets/planecole.png";
+import WizardIntro from "../components/WizardIntro";
 
 type Hotspot = {
   id: string;
@@ -68,11 +69,13 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const [introDone, setIntroDone] = useState(false);
+
   return (
     <Box
       sx={{
-        position: "absolute", // colle au conteneur du layout
-        inset: 0, // top:0, right:0, bottom:0, left:0
+        position: "absolute",
+        inset: 0,
         overflow: "hidden",
         backgroundImage: `url(${lyceeMap})`,
         backgroundSize: "cover",
@@ -113,8 +116,9 @@ const HomePage: React.FC = () => {
         </Typography>
       </Box>
 
-      {/* HOTSPOTS desktop */}
-      {!isSmall &&
+      {/* HOTSPOTS desktop – seulement après l’intro */}
+      {introDone &&
+        !isSmall &&
         HOTSPOTS.map((spot) => (
           <Box
             key={spot.id}
@@ -152,8 +156,8 @@ const HomePage: React.FC = () => {
           </Box>
         ))}
 
-      {/* HOTSPOTS mobile en grille en bas */}
-      {isSmall && (
+      {/* HOTSPOTS mobile – seulement après l’intro */}
+      {introDone && isSmall && (
         <Box
           sx={{
             position: "absolute",
@@ -201,6 +205,9 @@ const HomePage: React.FC = () => {
           </Box>
         </Box>
       )}
+
+      {/* OVERLAY DU MAGICIEN – bloque tout tant que pas fini */}
+      {!introDone && <WizardIntro onFinish={() => setIntroDone(true)} />}
     </Box>
   );
 };
