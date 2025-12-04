@@ -3,6 +3,7 @@ import viteLogo from "/vite.svg";
 import testData from "../data/test.json";
 import { Box, Link, Typography } from "@mui/material";
 import CountButton from "../components/CountButton";
+import DialogTester from "../components/DialogTester";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,7 @@ export default function HomePage() {
         </Typography>
       </Box>
       <Typography>Click on the Vite and React logos to learn more</Typography>
+      <DialogTester />
     </>
   );
 }
