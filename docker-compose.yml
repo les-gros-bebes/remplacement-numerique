@@ -1,0 +1,8 @@
+services:
+  quick-frontend-template:
+    container_name: quick-frontend-template
+    image: quick-frontend-template:1.0
+    build: .
+    # env_file: .env
+    ports:
+      - 8080:80
