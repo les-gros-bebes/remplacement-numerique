@@ -1,38 +1,114 @@
 [
     {
-        "place": "place_one",
+        "place": "school",
         "conversations": [
             {
                 "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "hello !" },
-                    { "person": "person2", "message": "hello ! how are you ?" }
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the school" }
                 ]
             },
             {
                 "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "good morning !" },
-                    { "person": "person2", "message": "hey ! it's nice to see you" }
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the school" }
                 ]
             }
         ]
     },
     {
-        "place": "place_two",
+        "place": "courtyard",
         "conversations": [
             {
                 "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "where are we ?" },
-                    { "person": "person2", "message": "we are in the place 2 !" }
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the courtyard" }
                 ]
             },
             {
                 "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "are we in the place 2 ?" },
-                    { "person": "person2", "message": "yes we are" }
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the courtyard" }
+                ]
+            }
+        ]
+    },
+    {
+        "place": "classroom",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the classroom" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the classroom" }
+                ]
+            }
+        ]
+    },
+    {
+        "place": "sports_hall",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the sports_hall" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the sports_hall" }
+                ]
+            }
+        ]
+    },
+    {
+        "place": "library",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the library" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the library" }
+                ]
+            }
+        ]
+    },
+    {
+        "place": "principal_office",
+        "conversations": [
+            {
+                "id": 1,
+                "conversation": [
+                    { "person": "person1", "message": "hello ! where are we ?" },
+                    { "person": "person2", "message": "hello ! we are at the principal_office" }
+                ]
+            },
+            {
+                "id": 2,
+                "conversation": [
+                    { "person": "person1", "message": "good morning ! where are we ?" },
+                    { "person": "person2", "message": "good morning ! we are at the principal_office" }
                 ]
             }
         ]
