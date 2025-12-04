@@ -1,6 +1,6 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
-import bgBureau from "../assets/bureau.png";
+import bgBureau from "/assets/bureau.png";
 
 const BureauPage: React.FC = () => {
   return (

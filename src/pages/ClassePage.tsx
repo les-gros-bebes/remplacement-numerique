@@ -1,6 +1,6 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
-import bgClasse from "../assets/salledecours.png";
+import bgClasse from "/assets/salledecours.png";
 
 const ClassePage: React.FC = () => {
   return (

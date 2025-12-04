@@ -1,6 +1,6 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
-import bgCdi from "../assets/cdi.png";
+import bgCdi from "/assets/cdi.png";
 
 const CdiPage: React.FC = () => {
   return (

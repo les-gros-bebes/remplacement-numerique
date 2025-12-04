@@ -3,7 +3,7 @@
 import React from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
-import lyceeMap from "../assets/planecole.png";
+import lyceeMap from "/assets/planecole.png";
 
 type Hotspot = {
   id: string;

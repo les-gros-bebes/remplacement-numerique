@@ -1,6 +1,6 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
-import bgGym from "../assets/salledesport.png";
+import bgGym from "/assets/salledesport.png";
 
 const GymnasePage: React.FC = () => {
   return (

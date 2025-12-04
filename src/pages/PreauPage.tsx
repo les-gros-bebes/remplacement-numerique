@@ -1,6 +1,6 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
-import bgPreau from "../assets/coursexterieur.png";
+import bgPreau from "/assets/coursexterieur.png";
 
 const PreauPage: React.FC = () => {
   return (
