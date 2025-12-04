@@ -1,19 +1,24 @@
+// AppLayout.tsx
+
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router";
 
 export default function AppLayout() {
   return (
-    <>
-      <AppBar position="static" sx={{ width: "100vw" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <AppBar position="static">
         <Toolbar disableGutters sx={{ px: 2 }}>
           <Typography
             variant="h6"
             component={Link}
             to="/"
-            sx={{
-              color: "inherit",
-              textDecoration: "none",
-            }}
+            sx={{ color: "inherit", textDecoration: "none" }}
           >
             Remplacement Numérique
           </Typography>
@@ -35,16 +40,13 @@ export default function AppLayout() {
 
       <Box
         sx={{
-          p: 4,
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-          minWidth: "100vw",
+          flex: 1,
+          width: "100%",
+          minHeight: 0,
         }}
       >
         <Outlet />
       </Box>
-    </>
+    </Box>
   );
 }
