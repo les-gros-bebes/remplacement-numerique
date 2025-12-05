@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Paper, IconButton } from "@mui/material";
-import wizardImg from "/assets/magicien.png"; // tu peux changer si tu as une autre illustration de fin
+import wizardImg from "/assets/magicien.png";
+import {playMageVoice} from "../utils/soundPlayer.ts"; // tu peux changer si tu as une autre illustration de fin
 
 type WizardOutroProps = {
   onFinish: () => void;
@@ -25,7 +26,8 @@ const WizardOutro: React.FC<WizardOutroProps> = ({ onFinish }) => {
 
     let index = 0;
     const interval = setInterval(() => {
-      index++;
+        playMageVoice();
+        index++;
 
       const safe = safeHtmlTyping(fullText, index);
       setDisplayedText(safe);
