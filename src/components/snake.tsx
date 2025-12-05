@@ -110,11 +110,11 @@ const SnakeGame: React.FC = () => {
   return (
     <Box
       sx={{
-        display: "flex", // Centrage avec flexbox
-        flexDirection: "column", // Aligne les éléments verticalement
-        justifyContent: "center", // Centre verticalement
-        alignItems: "center", // Centre horizontalement
-        height: "100vh", // Prend toute la hauteur de la fenêtre
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "90vh",
         fontFamily: "Arial, sans-serif",
         textAlign: "center",
         padding: "20px",
@@ -132,7 +132,7 @@ const SnakeGame: React.FC = () => {
       </h1>
       <p
         style={{
-          fontSize: "1.2rem",
+          fontSize: "1.0rem",
           color: "#999",
           fontFamily: "Autour One, sans-serif",
         }}
@@ -144,7 +144,7 @@ const SnakeGame: React.FC = () => {
           style={{
             color: "red",
             fontWeight: "bold",
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
             fontFamily: "Autour One, sans-serif",
           }}
         >
@@ -153,9 +153,9 @@ const SnakeGame: React.FC = () => {
       )}
       <Box
         sx={{
-          width: "90vw", // La grille occupe 90% de la largeur de l'écran
-          height: "90vw", // La hauteur est égale à la largeur pour garder un carré
-          maxWidth: "500px", // Taille maximale pour éviter qu'elle devienne trop grande
+          width: "90vw",
+          height: "90vw",
+          maxWidth: "500px",
           maxHeight: "500px", // Taille maximale pour correspondre à la largeur
           display: "grid",
           border: "5px solid #333",
