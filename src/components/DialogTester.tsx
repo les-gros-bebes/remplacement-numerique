@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getDialogFromLocation } from "../utils/jsonContentLoader";
 
 type Message = {
@@ -12,17 +12,10 @@ type Conversation = {
 };
 
 export default function DialogTester() {
-  const [dialog, setDialog] = useState<Conversation | null>(null);
+  const [dialog] = useState<Conversation | null>(
+    () => getDialogFromLocation(2, 0) as Conversation | null
+  );
   const [messageIndex, setMessageIndex] = useState(0);
-
-  useEffect(() => {
-    const data = getDialogFromLocation(2, 0) as Conversation | null;
-
-    if (data) {
-      setDialog(data);
-      setMessageIndex(0);
-    }
-  }, []);
 
   if (!dialog) return <p>Chargement…</p>;
 
