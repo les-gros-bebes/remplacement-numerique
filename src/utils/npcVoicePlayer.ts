@@ -19,7 +19,7 @@ export function playBeep(ctx: AudioContext) {
     lfo.connect(lfoGain).connect(osc.frequency);
 
     gain.gain.setValueAtTime(0.0001, start);
-    gain.gain.linearRampToValueAtTime(0.2, start + 0.03);
+    gain.gain.linearRampToValueAtTime(0.05, start + 0.03);
     gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.22);
 
     osc.connect(gain).connect(ctx.destination);
