@@ -5,6 +5,7 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "/assets/planecole.png";
 import WizardIntro from "../components/WizardIntro";
+import Star from "/assets/star.png";
 
 type Hotspot = {
   id: string;
@@ -141,6 +142,18 @@ const HomePage: React.FC = () => {
               },
             }}
           >
+            <img
+              src={Star}
+              height={"40%"}
+              style={{
+                animation: "spin 5s linear infinite",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
+            />
+
             <Box
               sx={{
                 position: "absolute",
