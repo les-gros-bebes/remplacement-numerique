@@ -89,7 +89,6 @@ const RoomLayout: React.FC<RoomLayoutProps> = ({
         {/* Zone centrale pour l’activité */}
         <Box
           sx={{
-            overflow: "auto",
             flex: 1,
             display: "flex",
             alignItems: "center",
