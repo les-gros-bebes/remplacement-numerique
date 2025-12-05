@@ -63,39 +63,42 @@ const SnakeGame: React.FC = () => {
     setSnake(newSnake);
   }, [snake, direction, food, isJumping, gameOver, score]);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (gameOver && e.key === " ") {
-      // Réinitialise le jeu
-      setSnake([[5, 5]]);
-      setFood([10, 10]);
-      setDirection("RIGHT");
-      setIsJumping(false);
-      setScore(0);
-      setGameOver(false);
-      return;
-    }
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (gameOver && e.key === " ") {
+        // Réinitialise le jeu
+        setSnake([[5, 5]]);
+        setFood([10, 10]);
+        setDirection("RIGHT");
+        setIsJumping(false);
+        setScore(0);
+        setGameOver(false);
+        return;
+      }
 
-    switch (e.key) {
-      case "ArrowUp":
-        if (direction !== "DOWN") setDirection("UP");
-        break;
-      case "ArrowDown":
-        if (direction !== "UP") setDirection("DOWN");
-        break;
-      case "ArrowLeft":
-        if (direction !== "RIGHT") setDirection("LEFT");
-        break;
-      case "ArrowRight":
-        if (direction !== "LEFT") setDirection("RIGHT");
-        break;
-      case " ":
-        if (!gameOver) {
-          setIsJumping(true);
-          setTimeout(() => setIsJumping(false), 2000);
-        }
-        break;
-    }
-  };
+      switch (e.key) {
+        case "ArrowUp":
+          if (direction !== "DOWN") setDirection("UP");
+          break;
+        case "ArrowDown":
+          if (direction !== "UP") setDirection("DOWN");
+          break;
+        case "ArrowLeft":
+          if (direction !== "RIGHT") setDirection("LEFT");
+          break;
+        case "ArrowRight":
+          if (direction !== "LEFT") setDirection("RIGHT");
+          break;
+        case " ":
+          if (!gameOver) {
+            setIsJumping(true);
+            setTimeout(() => setIsJumping(false), 2000);
+          }
+          break;
+      }
+    },
+    [gameOver, direction]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
