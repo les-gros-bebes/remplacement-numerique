@@ -124,6 +124,22 @@ const AS400Terminal: React.FC = () => {
   const [showErrorSequence, setShowErrorSequence] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [terminalColor, setTerminalColor] = useState("#00FF00"); // Default Green
+  const [hintGlitch, setHintGlitch] = useState(false);
+
+  // Glitch effect for hints
+  useEffect(() => {
+    const triggerGlitch = () => {
+      setHintGlitch(true);
+      setTimeout(() => setHintGlitch(false), 300);
+
+      // Schedule next glitch
+      const nextDelay = Math.random() * 4000 + 3000; // 3-7 seconds
+      setTimeout(triggerGlitch, nextDelay);
+    };
+
+    const timer = setTimeout(triggerGlitch, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (currentStepId === "system_access") {
@@ -345,10 +361,13 @@ const AS400Terminal: React.FC = () => {
               }
             }}
             sx={{
-              color: "black",
+              color: item === "Actions" && hintGlitch ? "#00FF00" : "black",
+              bgcolor:
+                item === "Actions" && hintGlitch ? "black" : "transparent",
               cursor: "pointer",
               "&:hover": { bgcolor: "#000080", color: "white" },
               px: 0.5,
+              fontWeight: item === "Actions" && hintGlitch ? "bold" : "normal",
             }}
           >
             {item}
@@ -551,7 +570,15 @@ const AS400Terminal: React.FC = () => {
                 color: cBlue,
               }}
             >
-              <Typography sx={{ fontFamily: "inherit" }}>F3=Exit</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "inherit",
+                  color: hintGlitch ? "red" : "inherit",
+                  fontWeight: hintGlitch ? "bold" : "normal",
+                }}
+              >
+                F3=Exit
+              </Typography>
               <Typography sx={{ fontFamily: "inherit" }}>F4=Prompt</Typography>
               <Typography sx={{ fontFamily: "inherit" }}>
                 F9=Retrieve
