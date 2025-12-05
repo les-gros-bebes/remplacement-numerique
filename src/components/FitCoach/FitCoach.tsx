@@ -56,7 +56,7 @@ const FitCoach: React.FC = () => {
   };
 
   const handleExitGym = () => {
-    window.location.href = "/";
+    window.location.href = "/home";
   };
 
   return (

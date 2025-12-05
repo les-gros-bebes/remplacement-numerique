@@ -77,7 +77,7 @@ const QCM: React.FC<QCMProps> = ({ questions, onComplete, onBack }) => {
           <Button
             startIcon={<ArrowBackIcon />}
             onClick={handleBack}
-            sx={{ mt: 2, color: "text.secondary" }}
+            sx={{ mt: 1, color: "text.secondary" }}
             size="small"
           >
             Retour

@@ -53,13 +53,13 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
 
       <Typography
         variant="h6"
-        sx={{ mb: 2, minHeight: "3em", lineHeight: 1.6 }}
+        sx={{ mb: 0.5, minHeight: "2em", lineHeight: 1.6 }}
       >
         {text}
       </Typography>
 
       {children && (
-        <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}>
+        <Box sx={{ mt: 1, display: "flex", flexDirection: "column", gap: 1 }}>
           {children}
         </Box>
       )}
