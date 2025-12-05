@@ -129,10 +129,7 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
 
     // If media is just a string (from a variation), use it
     if (typeof exercise.media === "string") {
-      return new URL(
-        `../../assets/exercises/media/${exercise.media}`,
-        import.meta.url
-      ).href;
+      return `/assets/exercices/media/${exercise.media}`;
     }
 
     // Otherwise use the default/variant logic
@@ -144,9 +141,8 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
       mediaName = exercise.media.variants.advanced;
     }
 
-    // Use Vite's dynamic asset handling
-    return new URL(`../../assets/exercises/media/${mediaName}`, import.meta.url)
-      .href;
+    // Use public assets
+    return `/assets/exercices/media/${mediaName}`;
   };
 
   const handleStartSession = () => {
