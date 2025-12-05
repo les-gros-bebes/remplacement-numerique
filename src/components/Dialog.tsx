@@ -91,6 +91,12 @@ export default function Dialog({
   const handleChoiceClick = (choice: Choice) => {
     setSelectedAnswer(choice.answer);
     setChoices(null);
+
+    if (choice.isCorrect) {
+      const score = parseInt(localStorage.getItem("score") || "0", 10);
+      const newScore = score + 1;
+      localStorage.setItem("score", String(newScore));
+    }
   };
 
   const nextDialog = () => {
