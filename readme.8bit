@@ -1,0 +1,12 @@
+NOM: readme.8bit
+CONTENU:
+------------------------------------------------------------------
+|  ACCÈS AU PORTAIL TEMPOREL 2000                                |
+|----------------------------------------------------------------|
+|  URL: http://localhost:5173/salle-info                         |
+|                                                                |
+|  INSTRUCTIONS:                                                 |
+|  1. Lancez l'application (bun run dev)                         |
+|  2. Naviguez vers la route /salle-info                         |
+|  3. Profitez du design "High-Tech" de l'an 2000 !              |
+------------------------------------------------------------------
