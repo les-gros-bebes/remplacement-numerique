@@ -159,25 +159,6 @@ const HomePage: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* HEADER (optionnel) */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: 16,
-          left: "50%",
-          transform: "translateX(-50%)",
-          textAlign: "center",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          px: 3,
-          py: 2,
-          borderRadius: 3,
-          backdropFilter: "blur(4px)",
-          maxWidth: "90vw",
-        }}
-      >
-        {/* Remets un titre si tu veux */}
-      </Box>
-
       {/* HOTSPOTS desktop – seulement après l’intro */}
       {introDone &&
         !isSmall &&
