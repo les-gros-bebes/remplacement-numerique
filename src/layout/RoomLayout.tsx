@@ -21,8 +21,8 @@ const RoomLayout: React.FC<RoomLayoutProps> = ({
     <Box
       sx={{
         position: "absolute",
-        inset: 0,
         overflow: "hidden",
+        inset: 0,
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -89,6 +89,7 @@ const RoomLayout: React.FC<RoomLayoutProps> = ({
         {/* Zone centrale pour l’activité */}
         <Box
           sx={{
+            overflow: "auto",
             flex: 1,
             display: "flex",
             alignItems: "center",
