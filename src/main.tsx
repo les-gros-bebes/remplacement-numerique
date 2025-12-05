@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import AppProvider from "./AppContext.tsx";
 
 const lightThemeAvailable = true;
-const darkThemeAvailable = true;
+const darkThemeAvailable = false;
 
 interface CustomPaletteColor {
   accent: string;
