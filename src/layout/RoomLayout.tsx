@@ -99,7 +99,7 @@ const RoomLayout: React.FC<RoomLayoutProps> = ({
             sx={{
               backgroundColor: "rgba(0,0,0,0.2)",
               borderRadius: 3,
-              p: 3,
+              p: 1,
               maxWidth: 800,
               width: "100%",
               height: "80vh",
