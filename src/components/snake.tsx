@@ -1,0 +1,177 @@
+import React, { useState, useEffect, useCallback } from "react";
+import { Box } from "@mui/material";
+
+const SnakeGame: React.FC = () => {
+  const [snake, setSnake] = useState([[5, 5]]);
+  const [food, setFood] = useState([10, 10]);
+  const [direction, setDirection] = useState("RIGHT");
+  const [isJumping, setIsJumping] = useState(false);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+
+  const boardSize = 20;
+
+  const moveSnake = useCallback(() => {
+    if (gameOver) return;
+
+    const newSnake = [...snake];
+    const head = [...newSnake[newSnake.length - 1]];
+
+    switch (direction) {
+      case "UP":
+        head[1] -= 1;
+        break;
+      case "DOWN":
+        head[1] += 1;
+        break;
+      case "LEFT":
+        head[0] -= 1;
+        break;
+      case "RIGHT":
+        head[0] += 1;
+        break;
+    }
+
+    newSnake.push(head);
+
+    if (head[0] === food[0] && head[1] === food[1]) {
+      setScore(score + 1);
+      setFood([
+        Math.floor(Math.random() * boardSize),
+        Math.floor(Math.random() * boardSize),
+      ]);
+    } else {
+      newSnake.shift();
+    }
+
+    if (!isJumping) {
+      const hitWall =
+        head[0] < 0 ||
+        head[1] < 0 ||
+        head[0] >= boardSize ||
+        head[1] >= boardSize;
+      const hitSelf = newSnake
+        .slice(0, -1)
+        .some((segment) => segment[0] === head[0] && segment[1] === head[1]);
+
+      if (hitWall || hitSelf) {
+        setGameOver(true);
+        return;
+      }
+    }
+
+    setSnake(newSnake);
+  }, [snake, direction, food, isJumping, gameOver, score]);
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (gameOver && e.key === " ") {
+      // Réinitialise le jeu
+      setSnake([[5, 5]]);
+      setFood([10, 10]);
+      setDirection("RIGHT");
+      setIsJumping(false);
+      setScore(0);
+      setGameOver(false);
+      return;
+    }
+
+    switch (e.key) {
+      case "ArrowUp":
+        if (direction !== "DOWN") setDirection("UP");
+        break;
+      case "ArrowDown":
+        if (direction !== "UP") setDirection("DOWN");
+        break;
+      case "ArrowLeft":
+        if (direction !== "RIGHT") setDirection("LEFT");
+        break;
+      case "ArrowRight":
+        if (direction !== "LEFT") setDirection("RIGHT");
+        break;
+      case " ":
+        if (!gameOver) {
+          setIsJumping(true);
+          setTimeout(() => setIsJumping(false), 2000);
+        }
+        break;
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  useEffect(() => {
+    const interval = setInterval(moveSnake, 200);
+    return () => clearInterval(interval);
+  }, [moveSnake]);
+
+  return (
+    <Box
+      sx={{
+        textAlign: "center",
+        fontFamily: "Arial, sans-serif",
+        padding: "20px",
+      }}
+    >
+      <h1 style={{ color: "#333", fontSize: "2rem" }}>Snake Game</h1>
+      <p style={{ fontSize: "1.2rem", color: "#555" }}>Score: {score}</p>
+      {gameOver && (
+        <p
+          style={{
+            color: "red",
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+          }}
+        >
+          Game Over! Appuyez sur espace pour recommencer.
+        </p>
+      )}
+      <Box
+        sx={{
+          width: "fit-content",
+          margin: "20px auto",
+          display: "grid",
+          border: "5px solid #333",
+          backgroundColor: "#f0f0f0",
+          borderRadius: "10px",
+          gridTemplateColumns: `repeat(${boardSize}, 20px)`,
+          gridTemplateRows: `repeat(${boardSize}, 20px)`,
+        }}
+      >
+        {Array.from({ length: boardSize }).map((_, row) =>
+          Array.from({ length: boardSize }).map((_, col) => {
+            const isSnake = snake.some(
+              (segment) => segment[0] === col && segment[1] === row
+            );
+            const isFood = food[0] === col && food[1] === row;
+            return (
+              <Box
+                key={`${row}-${col}`}
+                sx={{
+                  width: "20px",
+                  height: "20px",
+                  backgroundColor: isSnake
+                    ? "#4caf50"
+                    : isFood
+                    ? "#ff5722"
+                    : "#e0e0e0",
+                  border: "1px solid #ddd",
+                  borderRadius: isSnake ? "5px" : isFood ? "50%" : "0",
+                  boxShadow: isSnake
+                    ? "0 0 5px #4caf50"
+                    : isFood
+                    ? "0 0 5px #ff5722"
+                    : "none",
+                }}
+              ></Box>
+            );
+          })
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+export default SnakeGame;
