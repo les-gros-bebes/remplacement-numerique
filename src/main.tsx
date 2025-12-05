@@ -37,6 +37,9 @@ const theme = createTheme({
         custom: {
           accent: "#ff0000",
         },
+        text: {
+          primary: "#ffffff",
+        },
       },
     },
     dark: darkThemeAvailable && {
@@ -46,6 +49,9 @@ const theme = createTheme({
         },
         custom: {
           accent: "#ff0000",
+        },
+        text: {
+          primary: "#ffffff",
         },
       },
     },
