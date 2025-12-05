@@ -26,6 +26,9 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
         position: "relative",
         mt: 2,
         mx: 0,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {/* Character Name Tag */}

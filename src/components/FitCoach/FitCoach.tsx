@@ -64,16 +64,9 @@ const FitCoach: React.FC = () => {
       <CssBaseline />
       <Box
         sx={{
-          height: "100vh",
-          width: "100vw",
-          backgroundImage: `url(${gymBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          flexDirection: "column",
-          overflow: "hidden",
-          m: 0,
-          p: 0,
+          height: "100%",
+          width: "100%",
+          position: "relative",
         }}
       >
         {step === "workout" ? (
@@ -84,17 +77,33 @@ const FitCoach: React.FC = () => {
           />
         ) : (
           <>
-            {/* Character Display - Full Screen Background Layer */}
+            {/* Background Layer */}
             <Box
               sx={{
                 position: "absolute",
                 inset: 0,
+                backgroundImage: `url(${gymBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                borderRadius: 2,
+                overflow: "hidden",
+                zIndex: 0,
+              }}
+            />
+
+            {/* Character Display - Pops out of container */}
+            <Box
+              sx={{
+                position: "absolute",
+                right: "-5%",
+                bottom: "-5%",
+                top: "-5%",
+                width: "50%",
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "flex-end",
                 zIndex: 1,
                 pointerEvents: "none",
-                overflow: "hidden",
               }}
             >
               <Fade in={true} timeout={1000}>
@@ -102,7 +111,7 @@ const FitCoach: React.FC = () => {
                   src={mrSchutz}
                   alt="Mr. Schutz"
                   style={{
-                    height: "100vh",
+                    height: "100%",
                     width: "auto",
                     objectFit: "contain",
                     objectPosition: "bottom right",
@@ -119,13 +128,14 @@ const FitCoach: React.FC = () => {
                 position: "relative",
                 zIndex: 2,
                 flex: 1,
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-end",
                 pb: 4,
               }}
             >
-              <Box sx={{ position: "relative" }}>
+              <Box sx={{ position: "relative", width: "100%" }}>
                 {step === "congrats" && (
                   <DialogueBox text={congratsMessage}>
                     <Button

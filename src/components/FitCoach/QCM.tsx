@@ -43,7 +43,7 @@ const QCM: React.FC<QCMProps> = ({ questions, onComplete, onBack }) => {
 
   return (
     <Fade in={true} key={currentQuestion.id} timeout={500}>
-      <Box>
+      <Box sx={{ height: "100%" }}>
         {" "}
         {/* Wrapper needed for Fade? Actually DialogueBox is a component. */}
         <DialogueBox text={currentQuestion.question}>

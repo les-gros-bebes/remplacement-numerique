@@ -111,7 +111,7 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
     return (
       <Box
         sx={{
-          height: "100vh",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           bgcolor: "primary.main",
@@ -196,7 +196,7 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         bgcolor: "rgba(255,255,255,0.95)",
@@ -245,15 +245,25 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
       >
         <Card
           variant="outlined"
-          sx={{ width: "100%", mb: 2, borderRadius: 2, overflow: "hidden" }}
+          sx={{
+            width: "100%",
+            mb: 2,
+            borderRadius: 2,
+            overflow: "hidden",
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
           <Box
             sx={{
               bgcolor: "grey.100",
+              flex: 1,
+              position: "relative",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              minHeight: 250,
+              overflow: "hidden",
             }}
           >
             {isVideo(currentExercise.media) ? (
@@ -263,16 +273,24 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
                 loop
                 muted
                 playsInline
-                style={{ maxWidth: "100%", maxHeight: 300 }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  position: "absolute",
+                  inset: 0,
+                }}
               />
             ) : (
               <img
                 src={currentExercise.media}
                 alt={currentExercise.name}
                 style={{
-                  maxWidth: "100%",
-                  maxHeight: 300,
+                  width: "100%",
+                  height: "100%",
                   objectFit: "contain",
+                  position: "absolute",
+                  inset: 0,
                 }}
               />
             )}
