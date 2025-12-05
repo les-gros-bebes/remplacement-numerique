@@ -95,10 +95,10 @@ const FitCoach: React.FC = () => {
             <Box
               sx={{
                 position: "absolute",
-                right: { xs: "-10%", md: "-5%" },
+                right: "-5%",
                 bottom: "-5%",
                 top: "-5%",
-                width: { xs: "30%", md: "50%" },
+                width: "50%",
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "flex-end",
@@ -135,13 +135,7 @@ const FitCoach: React.FC = () => {
                 pb: 4,
               }}
             >
-              <Box
-                sx={{
-                  position: "relative",
-                  width: "100%",
-                  height: { xs: "auto", md: "50%" },
-                }}
-              >
+              <Box sx={{ position: "relative", width: "100%" }}>
                 {step === "congrats" && (
                   <DialogueBox text={congratsMessage}>
                     <Button
