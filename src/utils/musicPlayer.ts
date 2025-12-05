@@ -2,7 +2,7 @@ let mainTheme: HTMLAudioElement;
 
 export function tearUpMainTheme() {
     mainTheme = new Audio("assets/sounds/theme.ogg");
-    mainTheme.volume = 0.3;
+    mainTheme.volume = 0.1;
     mainTheme.loop = true;
 }
 

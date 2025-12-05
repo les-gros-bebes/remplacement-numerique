@@ -1,6 +1,6 @@
 const ctx = new AudioContext();
 export const nextDialogAudio = new Audio("assets/sounds/next.mp3");
-
+export const yesDialogAudio = new Audio("assets/sounds/yes_next.mp3");
 
 export function playMageVoice() {
     const start = ctx.currentTime;

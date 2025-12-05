@@ -4,7 +4,7 @@ import {
   getDialogFromLocation,
 } from "../utils/jsonContentLoader";
 import { useNavigate } from "react-router";
-import {nextDialogAudio} from "../utils/soundPlayer.ts";
+import {nextDialogAudio, yesDialogAudio} from "../utils/soundPlayer.ts";
 
 type Message = {
   person: string;
@@ -91,7 +91,8 @@ export default function Dialog({
   };
 
   const handleChoiceClick = (choice: Choice) => {
-    setSelectedAnswer(choice.answer);
+    yesDialogAudio.play();
+      setSelectedAnswer(choice.answer);
     setChoices(null);
 
     if (choice.isCorrect) {
@@ -102,12 +103,13 @@ export default function Dialog({
   };
 
   const nextDialog = () => {
-    const newIndex = dialogIndex + 1;
+      console.log("Test");
+      nextDialogAudio.play();
+      const newIndex = dialogIndex + 1;
     const newDialog = getDialogFromLocation(
       locationNumber,
       newIndex
     ) as Conversation | null;
-
     setDialogIndex(newIndex);
     setDialog(newDialog);
     setMessageIndex(0);
