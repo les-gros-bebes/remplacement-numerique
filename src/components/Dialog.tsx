@@ -4,6 +4,7 @@ import {
   getDialogFromLocation,
 } from "../utils/jsonContentLoader";
 import { useNavigate } from "react-router";
+import { Button } from "@mui/material";
 
 type Message = {
   person: string;
@@ -128,13 +129,13 @@ export default function Dialog({
       {choices && (
         <div style={{ marginTop: 10 }}>
           {choices.map((choice, index) => (
-            <button
+            <Button
               key={index}
               onClick={() => handleChoiceClick(choice)}
               style={{ display: "block", margin: "5px 0" }}
             >
               {choice.label}
-            </button>
+            </Button>
           ))}
         </div>
       )}
@@ -146,13 +147,13 @@ export default function Dialog({
             <strong>Mage : </strong>{" "}
             <span dangerouslySetInnerHTML={{ __html: selectedHtml }} />
           </p>
-          <button onClick={nextDialog}>Suivant →</button>
+          <Button onClick={nextDialog}>Suivant →</Button>
         </div>
       )}
 
       {/* Next sans choix */}
       {!choices && !selectedAnswer && (
-        <button onClick={handleNext}>Suivant →</button>
+        <Button onClick={handleNext}>Suivant →</Button>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ const bureauMentor = new URL("/assets/directeur.png", import.meta.url).href;
 const BureauPage: React.FC = () => {
   return (
     <RoomLayout
-      title="Salle du Directeur"
+      title="Bureau du directeur"
       subtitle="Collabore en ligne tout en respectant l’accessibilité et la vie privée"
       backgroundImage={bgBureau}
     >
