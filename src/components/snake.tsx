@@ -110,9 +110,15 @@ const SnakeGame: React.FC = () => {
   return (
     <Box
       sx={{
-        textAlign: "center",
+        display: "flex", // Centrage avec flexbox
+        flexDirection: "column", // Aligne les éléments verticalement
+        justifyContent: "center", // Centre verticalement
+        alignItems: "center", // Centre horizontalement
+        height: "100vh", // Prend toute la hauteur de la fenêtre
         fontFamily: "Arial, sans-serif",
+        textAlign: "center",
         padding: "20px",
+        boxSizing: "border-box",
       }}
     >
       <h1
@@ -147,14 +153,16 @@ const SnakeGame: React.FC = () => {
       )}
       <Box
         sx={{
-          width: "fit-content",
-          margin: "20px auto",
+          width: "90vw", // La grille occupe 90% de la largeur de l'écran
+          height: "90vw", // La hauteur est égale à la largeur pour garder un carré
+          maxWidth: "500px", // Taille maximale pour éviter qu'elle devienne trop grande
+          maxHeight: "500px", // Taille maximale pour correspondre à la largeur
           display: "grid",
           border: "5px solid #333",
           backgroundColor: "#f0f0f0",
           borderRadius: "10px",
-          gridTemplateColumns: `repeat(${boardSize}, 20px)`,
-          gridTemplateRows: `repeat(${boardSize}, 20px)`,
+          gridTemplateColumns: `repeat(${boardSize}, 1fr)`, // Colonnes flexibles
+          gridTemplateRows: `repeat(${boardSize}, 1fr)`, // Lignes flexibles
         }}
       >
         {Array.from({ length: boardSize }).map((_, row) =>
@@ -171,8 +179,8 @@ const SnakeGame: React.FC = () => {
               <Box
                 key={`${row}-${col}`}
                 sx={{
-                  width: "20px",
-                  height: "20px",
+                  width: "100%", // Chaque cellule occupe 100% de la largeur de sa colonne
+                  height: "100%", // Chaque cellule occupe 100% de la hauteur de sa ligne
                   backgroundColor: isHead
                     ? "#2e7d32" // Couleur plus foncée pour la tête
                     : isSnake
