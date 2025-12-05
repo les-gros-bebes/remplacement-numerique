@@ -1,9 +1,9 @@
 // src/components/WizardIntro.tsx
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Box, Typography, Button, Paper, IconButton } from "@mui/material";
 import wizardImg from "/assets/magicien.png"; // adapte le chemin
-import { playBeep } from "../utils/npcVoicePlayer.ts";
+import { playMageVoice } from "../utils/soundPlayer.ts";
 
 type WizardIntroProps = {
   onFinish: () => void;
@@ -20,7 +20,6 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
   const [step, setStep] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
-  const ctx = useRef(new AudioContext());
 
   useEffect(() => {
     const fullText = MESSAGES[step];
@@ -29,7 +28,7 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
 
     let index = 0;
     const interval = setInterval(() => {
-      playBeep(ctx.current);
+      playMageVoice();
       index++;
 
       const safe = safeHtmlTyping(fullText, index);

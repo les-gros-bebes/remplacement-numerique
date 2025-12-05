@@ -4,6 +4,7 @@ import {
   getDialogFromLocation,
 } from "../utils/jsonContentLoader";
 import { useNavigate } from "react-router";
+import {nextDialogAudio} from "../utils/soundPlayer.ts";
 
 type Message = {
   person: string;
@@ -69,6 +70,7 @@ export default function Dialog({
   const current = messages[messageIndex];
 
   const handleNext = () => {
+      nextDialogAudio.play();
     if (current.triggerChoice >= 0) {
       const choiceData = getChoicesFromLocation(
         locationNumber,

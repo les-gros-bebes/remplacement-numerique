@@ -1,4 +1,8 @@
-export function playBeep(ctx: AudioContext) {
+const ctx = new AudioContext();
+export const nextDialogAudio = new Audio("assets/sounds/next.mp3");
+
+
+export function playMageVoice() {
     const start = ctx.currentTime;
 
     const osc = ctx.createOscillator();
