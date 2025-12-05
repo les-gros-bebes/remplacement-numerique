@@ -60,7 +60,7 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
       setChoices(null);
       setSelectedAnswer(null);
     } else {
-      alert("Fin de la conversation !");
+      navigate("/");
     }
   };
 
