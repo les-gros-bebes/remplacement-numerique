@@ -69,8 +69,25 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // 🔧 Active/désactive l’intro (en prod tu peux mettre true, en dev false si besoin)
   const INTRO_ENABLED = true;
-  const [introDone, setIntroDone] = useState(!INTRO_ENABLED);
+
+  // 🔁 Init à partir du localStorage (si déjà passé, on ne réaffiche plus)
+  const [introDone, setIntroDone] = useState(() => {
+    if (!INTRO_ENABLED) return true; // si désactivé, on skip direct
+
+    if (typeof window === "undefined") return false; // sécurité SSR éventuelle
+
+    const stored = window.localStorage.getItem("wizardIntroDone");
+    return stored === "true";
+  });
+
+  const handleIntroFinish = () => {
+    setIntroDone(true);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("wizardIntroDone", "true");
+    }
+  };
 
   return (
     <Box
@@ -99,24 +116,7 @@ const HomePage: React.FC = () => {
           maxWidth: "90vw",
         }}
       >
-        {/*
-        <Typography
-          variant="h4"
-          component="h1"
-          color="white"
-          sx={{ textShadow: "0px 0px 6px rgba(0,0,0,0.8)" }}
-        >
-          Lycée numérique responsable
-        </Typography>
-
-        <Typography
-          variant="subtitle2"
-          color="white"
-          sx={{ mt: 1, textShadow: "0px 0px 4px rgba(0,0,0,0.7)" }}
-        >
-          Clique sur un bâtiment ou un espace pour lancer l’activité
-        </Typography>
-        */}
+        {/* Titre/texte si tu veux les remettre */}
       </Box>
 
       {/* HOTSPOTS desktop – seulement après l’intro */}
@@ -211,7 +211,7 @@ const HomePage: React.FC = () => {
 
       {/* OVERLAY DU MAGICIEN – seulement si l’intro est activée et pas encore finie */}
       {INTRO_ENABLED && !introDone && (
-        <WizardIntro onFinish={() => setIntroDone(true)} />
+        <WizardIntro onFinish={handleIntroFinish} />
       )}
     </Box>
   );
