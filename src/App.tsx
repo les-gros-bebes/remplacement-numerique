@@ -8,8 +8,20 @@ import CdiPage from "./pages/CdiPage";
 import GymnasePage from "./pages/GymnasePage";
 import PreauPage from "./pages/PreauPage";
 import { Navigate } from "react-router";
+import {playMainTheme, tearUpMainTheme} from "./utils/musicPlayer.ts";
+import {useEffect} from "react";
+
 
 function App() {
+    tearUpMainTheme();
+    useEffect(() => {
+        const handleClick = () => {playMainTheme();
+        };
+        document.addEventListener("click", handleClick);
+        return () => {
+            document.removeEventListener("click", handleClick);
+        };
+    }, []);
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
