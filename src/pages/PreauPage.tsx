@@ -6,29 +6,33 @@ import snakeImage from "/assets/snake.png";
 import { Box, Modal } from "@mui/material";
 
 const PreauPage: React.FC = () => {
-  const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
-  const [snakePosition, setSnakePosition] = useState({
-    top: "50%",
-    left: "50%",
-  });
-  const [moveCount, setMoveCount] = useState(0); // Compteur de mouvements
+  const getRandomCornerPosition = () => {
+    const corners = [
+      { top: "10%", left: "10%" },
+      { top: "10%", left: "90%" },
+      { top: "90%", left: "10%" },
+      { top: "90%", left: "90%" },
+    ];
+    return corners[Math.floor(Math.random() * corners.length)];
+  };
 
-  // Fonction pour déplacer le serpent aléatoirement
+  const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
+  const [snakePosition, setSnakePosition] = useState(getRandomCornerPosition());
+  const [moveCount, setMoveCount] = useState(0);
+
   const moveSnake = () => {
     if (moveCount >= 3) return;
 
-    const randomTop = Math.random() * 80 + 10; // Entre 10% et 90% de la hauteur
-    const randomLeft = Math.random() * 80 + 10; // Entre 10% et 90% de la largeur
+    const randomTop = Math.random() * 80 + 10;
+    const randomLeft = Math.random() * 80 + 10;
     setSnakePosition({ top: `${randomTop}%`, left: `${randomLeft}%` });
-    setMoveCount((prev) => prev + 1); // Incrémente le compteur
+    setMoveCount((prev) => prev + 1);
   };
 
-  // Ouvre le jeu Snake
   const handleSnakeClick = () => {
     setIsSnakeGameOpen(true);
   };
 
-  // Ferme le jeu Snake
   const handleCloseSnakeGame = () => {
     setIsSnakeGameOpen(false);
   };
@@ -45,67 +49,67 @@ const PreauPage: React.FC = () => {
           position: "relative",
           width: "100%",
           height: "100%",
-          border: "5px solid #333", // Bordure autour de l'ensemble du jeu
+          border: "5px solid #333",
           borderRadius: "10px",
           padding: "20px",
           boxSizing: "border-box",
         }}
-      >
-        {/* Image du serpent qui bouge */}
-        <Box
-          component="img"
-          src={snakeImage}
-          alt="Snake"
-          sx={{
-            position: "absolute",
-            top: snakePosition.top,
-            left: snakePosition.left,
-            width: "50px",
-            height: "50px",
-            cursor: "pointer",
-            transition: "top 0.5s, left 0.5s", // Animation fluide
-          }}
-          onClick={handleSnakeClick}
-          onMouseEnter={moveSnake} // Déplace le serpent lorsqu'on passe la souris dessus
-        />
+      ></Box>
 
-        {/* Modal pour afficher le jeu Snake */}
-        <Modal
-          open={isSnakeGameOpen}
-          onClose={handleCloseSnakeGame}
+      {/* Image du serpent qui bouge */}
+      <Box
+        component="img"
+        src={snakeImage}
+        alt="Snake"
+        sx={{
+          position: "absolute",
+          top: snakePosition.top,
+          left: snakePosition.left,
+          width: "50px",
+          height: "50px",
+          cursor: "pointer",
+          transition: "top 0.5s, left 0.5s",
+        }}
+        onClick={handleSnakeClick}
+        onMouseEnter={moveSnake}
+      />
+
+      {/* Modal pour afficher le jeu Snake */}
+      <Modal
+        open={isSnakeGameOpen}
+        onClose={handleCloseSnakeGame}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            width: "90vw",
+            height: "90vh",
+            maxWidth: "600px",
+            maxHeight: "800px",
+            backgroundColor: "white",
+            borderRadius: "10px",
+            boxShadow: 24,
+            p: 2,
+            overflow: "auto",
           }}
         >
           <Box
             sx={{
-              width: "90vw",
-              height: "90vh",
-              maxWidth: "600px",
-              maxHeight: "800px",
-              backgroundColor: "white",
-              borderRadius: "10px",
-              boxShadow: 24,
-              p: 2,
-              overflow: "auto",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <SnakeGame />
-            </Box>
+            <SnakeGame />
           </Box>
-        </Modal>
-      </Box>
+        </Box>
+      </Modal>
     </RoomLayout>
   );
 };

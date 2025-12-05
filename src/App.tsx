@@ -7,7 +7,6 @@ import BureauPage from "./pages/BureauPage";
 import CdiPage from "./pages/CdiPage";
 import GymnasePage from "./pages/GymnasePage";
 import PreauPage from "./pages/PreauPage";
-import DevPage from "./pages/Dev";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
         <Route path="classe" element={<ClassePage />} />
         <Route path="gymnase" element={<GymnasePage />} />
         <Route path="preau" element={<PreauPage />} />
-        <Route path="dev" element={<DevPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
