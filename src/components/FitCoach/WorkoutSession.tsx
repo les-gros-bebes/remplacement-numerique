@@ -13,11 +13,16 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
 
-interface WorkoutExercise {
+export interface Instruction {
+  execution: string;
+  breathing: string;
+}
+
+export interface WorkoutExercise {
   id: string;
   name: string;
   media: string;
-  instructions: any;
+  instructions: Instruction;
   sets: number;
   reps: string; // "10 reps" or "30s"
   restTime: number; // in seconds
@@ -44,6 +49,16 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
   const isLastExercise = currentExerciseIndex === plan.length - 1;
   const isLastSet = currentSet === currentExercise.sets;
 
+  const handleTimerComplete = React.useCallback(() => {
+    if (phase === "rest") {
+      // End of rest -> Start next set or exercise
+      setPhase("work");
+      // If we were resting after the last set of previous exercise, we are already at the new exercise index/set logic
+      // Actually, rest happens AFTER a set.
+      // So if rest ends, we start the NEXT set.
+    }
+  }, [phase]);
+
   // Timer logic
   useEffect(() => {
     let interval: number | undefined;
@@ -52,21 +67,12 @@ const WorkoutSession: React.FC<WorkoutSessionProps> = ({
         setTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (timeLeft === 0 && isTimerRunning) {
-      setIsTimerRunning(false);
-      handleTimerComplete();
+      setTimeout(() => {
+        handleTimerComplete();
+      }, 0);
     }
     return () => clearInterval(interval);
-  }, [isTimerRunning, timeLeft]);
-
-  const handleTimerComplete = () => {
-    if (phase === "rest") {
-      // End of rest -> Start next set or exercise
-      setPhase("work");
-      // If we were resting after the last set of previous exercise, we are already at the new exercise index/set logic
-      // Actually, rest happens AFTER a set.
-      // So if rest ends, we start the NEXT set.
-    }
-  };
+  }, [isTimerRunning, timeLeft, handleTimerComplete]);
 
   const handleSetComplete = () => {
     if (isLastSet) {

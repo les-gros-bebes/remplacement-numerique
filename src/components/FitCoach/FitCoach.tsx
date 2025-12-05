@@ -6,7 +6,7 @@ import fitCoachData from "../../data/fit_coach_data.json";
 import coachDialogues from "../../data/coach_dialogues.json";
 import QCM from "./QCM";
 import ProfileResult from "./ProfileResult";
-import WorkoutSession from "./WorkoutSession";
+import WorkoutSession, { type WorkoutExercise } from "./WorkoutSession";
 import DialogueBox from "./DialogueBox";
 
 // Assets
@@ -22,7 +22,7 @@ const FitCoach: React.FC = () => {
     "intro" | "qcm" | "result" | "workout" | "congrats"
   >("intro");
   const [answers, setAnswers] = useState<Answers>({});
-  const [workoutPlan, setWorkoutPlan] = useState<any[]>([]);
+  const [workoutPlan, setWorkoutPlan] = useState<WorkoutExercise[]>([]);
   const [congratsMessage, setCongratsMessage] = useState("");
 
   const handleStart = () => {
@@ -39,14 +39,13 @@ const FitCoach: React.FC = () => {
     setStep("intro");
   };
 
-  const handleStartWorkout = (plan: any[]) => {
+  const handleStartWorkout = (plan: WorkoutExercise[]) => {
     setWorkoutPlan(plan);
     setStep("workout");
   };
 
   const handleWorkoutComplete = () => {
     const goal = answers[1] || "default";
-    // @ts-ignore
     const messages =
       coachDialogues.congrats[goal as keyof typeof coachDialogues.congrats] ||
       coachDialogues.congrats.default;

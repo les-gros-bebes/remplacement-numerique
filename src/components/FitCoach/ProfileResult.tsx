@@ -22,14 +22,37 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import type { Answers } from "./FitCoach";
+import type { WorkoutExercise } from "./WorkoutSession";
 import DialogueBox from "./DialogueBox";
 import decathlonProducts from "../../data/decathlon_products.json";
 
+const productsList = decathlonProducts as Product[];
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price?: number;
+  url: string;
+}
+
+interface Exercise {
+  id: string;
+  name: string;
+  tags: string[];
+  variations?: Record<string, Partial<Exercise> | undefined>;
+  related_product_id?: string;
+  media:
+    | string
+    | { default: string; variants?: { beginner?: string; advanced?: string } };
+  instructions: { execution: string; breathing: string };
+}
+
 interface ProfileResultProps {
   answers: Answers;
-  data: any;
+  data: { exercises: Exercise[] };
   onReset: () => void;
-  onStartWorkout: (plan: any[]) => void;
+  onStartWorkout: (plan: WorkoutExercise[]) => void;
 }
 
 const ProfileResult: React.FC<ProfileResultProps> = ({
@@ -70,45 +93,38 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
     return { title, desc, level, equipment, duration, goal };
   }, [answers]);
 
-  const resolveExercise = (exercise: any) => {
-    const { equipment } = profile;
+  const resolveExercise = React.useCallback(
+    (exercise: Exercise) => {
+      const { equipment } = profile;
 
-    // Check for equipment-based variations
-    if (exercise.variations && equipment && equipment !== "none") {
-      // If user has 'full' equipment, we can also check for 'basic' variations if 'full' isn't defined
-      // But for now let's just check exact match or fallback logic if needed.
-      // In our data we used keys "basic" and "full".
-
-      if (exercise.variations[equipment]) {
-        return { ...exercise, ...exercise.variations[equipment] };
+      if (exercise.variations && equipment && equipment !== "none") {
+        if (exercise.variations[equipment]) {
+          return { ...exercise, ...exercise.variations[equipment] } as Exercise;
+        }
+        if (equipment === "full" && exercise.variations["basic"]) {
+          return { ...exercise, ...exercise.variations["basic"] } as Exercise;
+        }
       }
-
-      // Fallback: if user has 'full' but we only have 'basic' variation, 'basic' is better than nothing?
-      if (equipment === "full" && exercise.variations["basic"]) {
-        return { ...exercise, ...exercise.variations["basic"] };
-      }
-    }
-
-    return exercise;
-  };
+      return exercise;
+    },
+    [profile]
+  );
 
   const uniqueProducts = useMemo(() => {
-    const products = new Map();
-    data.exercises.forEach((baseEx: any) => {
+    const products = new Map<string, Product>();
+    data.exercises.forEach((baseEx: Exercise) => {
       const ex = resolveExercise(baseEx);
       if (ex.related_product_id) {
-        const p = decathlonProducts.find(
-          (dp: any) => dp.id === ex.related_product_id
-        );
+        const p = productsList.find((dp) => dp.id === ex.related_product_id);
         if (p && !products.has(p.id)) {
           products.set(p.id, p);
         }
       }
     });
     return Array.from(products.values());
-  }, [data.exercises, profile]);
+  }, [data.exercises, resolveExercise]);
 
-  const getExerciseMedia = (exercise: any) => {
+  const getExerciseMedia = (exercise: Exercise) => {
     const level = profile.level; // beginner, intermediate, advanced
 
     // If media is just a string (from a variation), use it
@@ -149,12 +165,9 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
       reps = profile.level === "beginner" ? "8 répétitions" : "12 répétitions";
     }
 
-    const plan = data.exercises.map((baseEx: any) => {
+    const plan: WorkoutExercise[] = data.exercises.map((baseEx: Exercise) => {
       const ex = resolveExercise(baseEx);
       const mediaUrl = getExerciseMedia(ex);
-      const product = ex.related_product_id
-        ? decathlonProducts.find((p: any) => p.id === ex.related_product_id)
-        : undefined;
 
       // Special case for static exercises like Plank
       let exerciseReps = reps;
@@ -168,12 +181,13 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
       }
 
       return {
-        ...ex,
-        media: mediaUrl, // Pass resolved URL
+        id: ex.id,
+        name: ex.name,
+        media: mediaUrl,
+        instructions: ex.instructions,
         sets: sets,
         reps: exerciseReps,
-        restTime: 60, // Default rest
-        product: product,
+        restTime: 60,
       };
     });
 
@@ -202,12 +216,10 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
 
         <Box sx={{ maxHeight: "25vh", overflowY: "auto", pr: 1 }}>
           <Stack spacing={1}>
-            {data.exercises.map((baseEx: any, index: number) => {
+            {data.exercises.map((baseEx, index: number) => {
               const ex = resolveExercise(baseEx);
               const product = ex.related_product_id
-                ? decathlonProducts.find(
-                    (p: any) => p.id === ex.related_product_id
-                  )
+                ? productsList.find((p) => p.id === ex.related_product_id)
                 : null;
 
               return (
@@ -312,7 +324,7 @@ const ProfileResult: React.FC<ProfileResultProps> = ({
         <DialogTitle>Équipements recommandés</DialogTitle>
         <DialogContent dividers>
           <List>
-            {uniqueProducts.map((product: any) => (
+            {uniqueProducts.map((product) => (
               <ListItem key={product.id}>
                 <ListItemAvatar>
                   <Avatar sx={{ bgcolor: "secondary.main" }}>
