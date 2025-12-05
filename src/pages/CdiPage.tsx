@@ -1,7 +1,7 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
 import bgCdi from "/assets/cdi.png";
-import Dialog from "../components/Dialog";
+import Dialog from "../components/Dialog-ian";
 
 const CdiPage: React.FC = () => {
   return (

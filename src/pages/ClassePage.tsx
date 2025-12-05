@@ -1,7 +1,7 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
 import bgClasse from "/assets/salledecours.png";
-import Dialog from "../components/Dialog";
+import Dialog from "../components/Dialog-ian";
 
 const ClassePage: React.FC = () => {
   return (
