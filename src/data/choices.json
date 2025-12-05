@@ -3,17 +3,9 @@
         "place": "school",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "question": "school choice n1", "answer": "response 1" },
-                    { "question": "school choice n2", "answer": "response 2" }
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "school choice n1", "score_value": 10 },
-                    { "label": "school choice n2", "score_value": 5 }
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]
@@ -22,21 +14,9 @@
         "place": "courtyard",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "courtyard choice n1", "score_value": 10 },
-                    { "label": "courtyard choice n2", "score_value": 5 },
-                    { "label": "courtyard choice n3", "score_value": 15 },
-                    { "label": "courtyard choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "courtyard choice n1", "score_value": 10 },
-                    { "label": "courtyard choice n2", "score_value": 5 },
-                    { "label": "courtyard choice n3", "score_value": 15 },
-                    { "label": "courtyard choice n4", "score_value": 20}
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]
@@ -56,21 +36,9 @@
         "place": "sports_hall",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "sports_hall choice n1", "score_value": 10 },
-                    { "label": "sports_hall choice n2", "score_value": 5 },
-                    { "label": "sports_hall choice n3", "score_value": 15 },
-                    { "label": "sports_hall choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "sports_hall choice n1", "score_value": 10 },
-                    { "label": "sports_hall choice n2", "score_value": 5 },
-                    { "label": "sports_hall choice n3", "score_value": 15 },
-                    { "label": "sports_hall choice n4", "score_value": 20}
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]
@@ -79,21 +47,9 @@
         "place": "library",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "library choice n1", "score_value": 10 },
-                    { "label": "library choice n2", "score_value": 5 },
-                    { "label": "library choice n3", "score_value": 15 },
-                    { "label": "library choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "library choice n1", "score_value": 10 },
-                    { "label": "library choice n2", "score_value": 5 },
-                    { "label": "library choice n3", "score_value": 15 },
-                    { "label": "library choice n4", "score_value": 20}
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]
@@ -102,21 +58,9 @@
         "place": "principal_office",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "principal_office choice n1", "score_value": 10 },
-                    { "label": "principal_office choice n2", "score_value": 5 },
-                    { "label": "principal_office choice n3", "score_value": 15 },
-                    { "label": "principal_office choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "principal_office choice n1", "score_value": 10 },
-                    { "label": "principal_office choice n2", "score_value": 5 },
-                    { "label": "principal_office choice n3", "score_value": 15 },
-                    { "label": "principal_office choice n4", "score_value": 20}
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]

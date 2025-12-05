@@ -12,6 +12,12 @@ type Conversation = {
   conversation: Message[];
 };
 
+type Choice = {
+  label: string,
+  answer: string,
+  isCorrect: boolean
+}
+
 type DialogProps = {
   locationNumber: number;
   conversationIndex: number;
@@ -20,6 +26,8 @@ type DialogProps = {
 export default function Dialog({ locationNumber, conversationIndex }: DialogProps) {
   const [dialog, setDialog] = useState<Conversation | null>(null);
   const [messageIndex, setMessageIndex] = useState(0);
+  const [choices, setChoices] = useState<Choice[] | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   useEffect(() => {
     const data = getDialogFromLocation(locationNumber, conversationIndex) as Conversation | null;
@@ -27,8 +35,10 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
     if (data) {
       setDialog(data);
       setMessageIndex(0);
+      setChoices(null);
+      setSelectedAnswer(null);
     }
-  }, []);
+  }, [locationNumber, conversationIndex]);
 
   if (!dialog) return <p>Chargement…</p>;
 
@@ -37,13 +47,23 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
 
   const handleNext = () => {
     if (current.triggerChoice >= 0) {
-      console.log(getChoicesFromLocation(locationNumber, current.triggerChoice))
-    }
-    else if (messageIndex < messages.length - 1) {
+      const choiceData = getChoicesFromLocation(locationNumber, current.triggerChoice).choice;
+      if (choiceData) {
+        setChoices(choiceData);
+        setSelectedAnswer(null);
+      }
+    } else if (messageIndex < messages.length - 1) {
       setMessageIndex(messageIndex + 1);
+      setChoices(null);
+      setSelectedAnswer(null);
     } else {
       alert("Fin de la conversation !");
     }
+  };
+
+  const handleChoiceClick = (choice: Choice) => {
+    setSelectedAnswer(choice.answer);
+    setChoices(null);
   };
 
   return (
@@ -51,7 +71,28 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
       <p>
         <strong>{current.person} :</strong> {current.message}
       </p>
-      <button onClick={handleNext}>Suivant →</button>
+
+      {choices && (
+        <div style={{ marginTop: 10 }}>
+          {choices.map((choice, index) => (
+            <button
+              key={index}
+              onClick={() => handleChoiceClick(choice)}
+              style={{ display: "block", margin: "5px 0" }}
+            >
+              {choice.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {selectedAnswer && (
+        <p style={{ marginTop: 10, fontStyle: "italic" }}><strong>Mage : </strong> {selectedAnswer}</p>
+      )}
+
+      {!choices && !selectedAnswer && (
+        <button onClick={handleNext}>Suivant →</button>
+      )}
     </div>
   );
 }
