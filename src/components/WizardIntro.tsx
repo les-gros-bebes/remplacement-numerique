@@ -1,7 +1,8 @@
 // src/components/WizardIntro.tsx
 
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button, Paper } from "@mui/material";
+import { Box, Typography, Button, Paper, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import wizardImg from "/assets/magicien.png"; // adapte le chemin
 
 type WizardIntroProps = {
@@ -78,6 +79,47 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
         py: { xs: 2, md: 0 },
       }}
     >
+      {/* Bouton Skip / Fermer en haut à droite */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: { xs: 8, sm: 16 },
+          right: { xs: 8, sm: 16 },
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+        }}
+      >
+        <Button
+          onClick={onFinish}
+          size="small"
+          sx={{
+            textTransform: "none",
+            fontSize: { xs: "0.75rem", sm: "0.85rem" },
+            color: "#ffffff",
+            bgcolor: "rgba(0,0,0,0.4)",
+            "&:hover": {
+              bgcolor: "rgba(0,0,0,0.6)",
+            },
+            borderRadius: 999,
+            px: 2,
+          }}
+        >
+          Passer l’intro
+        </Button>
+
+        <IconButton
+          onClick={onFinish}
+          size="small"
+          sx={{
+            bgcolor: "rgba(0,0,0,0.4)",
+            "&:hover": { bgcolor: "rgba(0,0,0,0.6)" },
+            color: "#ffffff",
+          }}
+          aria-label="Fermer l’intro"
+        ></IconButton>
+      </Box>
+
       <Box
         sx={{
           position: "relative",
@@ -100,8 +142,6 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
             minHeight: { xs: 260, md: 320 },
             p: { xs: 2.5, md: 4 },
             backgroundColor: "#FDF5FF",
-
-            // 🔥 Pour caler le bouton en bas :
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -113,7 +153,7 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
             sx={{
               color: "#7A5BB5",
               fontSize: { xs: "0.95rem", md: "1.05rem" },
-              flexGrow: 1, // ← pousse le bouton vers le bas
+              flexGrow: 1,
             }}
             dangerouslySetInnerHTML={{
               __html: displayedText + (isTyping ? "<span>|</span>" : ""),
