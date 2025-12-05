@@ -1,0 +1,183 @@
+{
+  "start": {
+    "id": "start",
+    "speaker": "Mme Cédéyi",
+    "text": "Bienvenue au CDI !Aujourd’hui, je cherche comment naviguer sur Internet sans être suivie par des pubs, des cookies et des trackers. Google me harcèle… Je cherche 'brainrot' et j’ai des pubs pour brosses à dents connectées ! Peux-tu m’aider à trouver une alternative plus sûre ?",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Essayons un autre moteur de recherche.",
+        "nextId": "search_intro"
+      },
+      {
+        "key": "2",
+        "label": "Le problème vient peut-être du navigateur…",
+        "nextId": "browser_intro"
+      }
+    ]
+  },
+
+  "search_intro": {
+    "id": "search_intro",
+    "speaker": "Mage",
+    "text": "Bonne idée ! Tous les moteurs ne fonctionnent pas comme Google. Certains respectent davantage ta vie privée. Lequel veux-tu explorer ?",
+    "choices": [
+      { "key": "1", "label": "Bing ?", "nextId": "bing" },
+      { "key": "2", "label": "Qwant ?", "nextId": "qwant" },
+      { "key": "3", "label": "DuckDuckGo ?", "nextId": "ddg" }
+    ]
+  },
+
+  "bing": {
+    "id": "bing",
+    "speaker": "Mage",
+    "text": "Bing appartient à Microsoft. Il collecte beaucoup de données sur ses utilisateurs. Ce n’est donc pas la meilleure alternative si tu veux réduire le suivi publicitaire.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Je veux quelque chose de plus respectueux.",
+        "nextId": "search_intro"
+      },
+      {
+        "key": "2",
+        "label": "Je change plutôt de navigateur.",
+        "nextId": "browser_intro"
+      }
+    ]
+  },
+
+  "qwant": {
+    "id": "qwant",
+    "speaker": "Mage",
+    "text": "Bonne option ! Qwant est européen, ne revend pas tes données et applique la législation RGPD. Parfait pour limiter le profilage publicitaire.",
+    "choices": [
+      { "key": "1", "label": "Il existe encore mieux ?", "nextId": "ddg" },
+      {
+        "key": "2",
+        "label": "Et si on parlait du navigateur maintenant ?",
+        "nextId": "browser_intro"
+      }
+    ]
+  },
+
+  "ddg": {
+    "id": "ddg",
+    "speaker": "Mage",
+    "text": "DuckDuckGo ne crée pas de profil utilisateur et bloque une grande partie des trackers. Très efficace, mais ses résultats viennent parfois d'autres moteurs.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "OK, je veux maintenant protéger tout mon navigateur.",
+        "nextId": "browser_intro"
+      }
+    ]
+  },
+
+  "browser_intro": {
+    "id": "browser_intro",
+    "speaker": "Mage",
+    "text": "Un moteur de recherche, c’est bien… mais ton navigateur, lui, voit TOUT. C’est lui qui doit te protéger. Quel type de protection veux-tu ?",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Limiter le pistage et les cookies.",
+        "nextId": "firefox"
+      },
+      { "key": "2", "label": "Naviguer anonymement.", "nextId": "tor" },
+      {
+        "key": "3",
+        "label": "Comprendre les dangers d'un mauvais navigateur.",
+        "nextId": "risks"
+      }
+    ]
+  },
+
+  "risks": {
+    "id": "risks",
+    "speaker": "Mage",
+    "text": "Un mauvais navigateur peut :\n• Collecter ton historique.\n• Revendre ta navigation.\n• Télécharger automatiquement des cookies tiers.\n• Laisser passer des scripts espions.\n• Créer un profil publicitaire détaillé.\nAlors, mieux vaut bien choisir !",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Quel navigateur me protège le mieux ?",
+        "nextId": "firefox"
+      },
+      {
+        "key": "2",
+        "label": "Je veux rester totalement anonyme.",
+        "nextId": "tor"
+      }
+    ]
+  },
+
+  "firefox": {
+    "id": "firefox",
+    "speaker": "Mage",
+    "text": "Firefox est open source, indépendant et très axé sur la protection de la vie privée. Il bloque par défaut :\n• les cookies tiers,\n• les traqueurs connus,\n• les empreintes numériques basiques (fingerprinting).\nC’est un excellent choix pour un usage quotidien.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Comment améliorer encore Firefox ?",
+        "nextId": "extensions"
+      },
+      {
+        "key": "2",
+        "label": "Je veux aller au niveau maximum d’anonymat.",
+        "nextId": "tor"
+      }
+    ]
+  },
+
+  "tor": {
+    "id": "tor",
+    "speaker": "Mage",
+    "text": "Tor Browser est l’outil ultime pour l’anonymat. Il te permet de :\n• masquer ton adresse IP,\n• rendre ton trafic illisible,\n• éviter le fingerprinting.\nMais attention : certains sites fonctionnent moins bien, et la vitesse est réduite.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "OK, mais je veux aussi bloquer les pubs.",
+        "nextId": "extensions"
+      },
+      {
+        "key": "2",
+        "label": "Je veux un usage classique mais sécurisé.",
+        "nextId": "firefox"
+      }
+    ]
+  },
+
+  "extensions": {
+    "id": "extensions",
+    "speaker": "Mage",
+    "text": "Voici les extensions essentielles :\n• uBlock Origin : bloque pubs et traqueurs.\n• Privacy Badger : apprend à bloquer les espions.\n• HTTPS Everywhere : force le chiffrement.\n• ClearURLs : supprime les paramètres de tracking.\nElles transforment ton navigateur en rempart numérique.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Génial ! Et un dernier conseil ?",
+        "nextId": "good_practices"
+      }
+    ]
+  },
+
+  "good_practices": {
+    "id": "good_practices",
+    "speaker": "Mage",
+    "text": "Derniers conseils :\n• Mets à jour ton navigateur.\n• Refuse toujours les cookies non nécessaires.\n• Utilise la navigation privée pour éviter l’historique.\n• Ne clique pas sur les pubs trop belles pour être vraies.\n• Désactive le remplissage automatique des mots de passe.",
+    "choices": [
+      {
+        "key": "1",
+        "label": "Merci, je comprends beaucoup mieux !",
+        "nextId": "end"
+      }
+    ]
+  },
+
+  "end": {
+    "id": "end",
+    "speaker": "Mme Cédéyi",
+    "text": "Merci ! Je vais enfin pouvoir naviguer en paix. Adieu les pubs qui me suivent partout !",
+    "choices": [
+      { "key": "1", "label": "Terminer la session", "nextId": "system_access" }
+    ]
+  }
+}

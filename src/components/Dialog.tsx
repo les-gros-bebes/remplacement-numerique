@@ -27,10 +27,31 @@ type DialogProps = {
   conversationIndex: number;
 };
 
-export default function Dialog({ locationNumber, conversationIndex }: DialogProps) {
+// 🔗 Transforme les URLs en <a>
+function linkify(text: string): string {
+  if (!text) return "";
+
+  // Si jamais tu ajoutes toi-même du HTML, on ne double pas les liens
+  if (text.includes("<a ")) return text;
+
+  const urlRegex = /(https?:\/\/[^\s<]+)/g;
+
+  return text.replace(
+    urlRegex,
+    '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+}
+
+export default function Dialog({
+  locationNumber,
+  conversationIndex,
+}: DialogProps) {
   const [dialogIndex, setDialogIndex] = useState(conversationIndex);
   const [dialog, setDialog] = useState<Conversation | null>(
-    getDialogFromLocation(locationNumber, conversationIndex) as Conversation | null
+    getDialogFromLocation(
+      locationNumber,
+      conversationIndex
+    ) as Conversation | null
   );
 
   const [messageIndex, setMessageIndex] = useState(0);
@@ -39,7 +60,10 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
 
   const navigate = useNavigate();
 
-  if (!dialog) {navigate("/"); return}
+  if (!dialog) {
+    navigate("/");
+    return null;
+  }
 
   const messages = dialog.conversation;
   const current = messages[messageIndex];
@@ -67,25 +91,40 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
   const handleChoiceClick = (choice: Choice) => {
     setSelectedAnswer(choice.answer);
     setChoices(null);
+
+    if (choice.isCorrect) {
+      const score = parseInt(localStorage.getItem("score") || "0", 10);
+      const newScore = score + 1;
+      localStorage.setItem("score", String(newScore));
+    }
   };
 
   const nextDialog = () => {
     const newIndex = dialogIndex + 1;
-    const newDialog = getDialogFromLocation(locationNumber, newIndex) as Conversation | null;
+    const newDialog = getDialogFromLocation(
+      locationNumber,
+      newIndex
+    ) as Conversation | null;
 
     setDialogIndex(newIndex);
-    setDialog(newDialog);   // 🔥 ceci force le re-render et met à jour le dialogue
+    setDialog(newDialog);
     setMessageIndex(0);
     setChoices(null);
     setSelectedAnswer(null);
   };
 
+  const currentHtml = linkify(current.message);
+  const selectedHtml = selectedAnswer ? linkify(selectedAnswer) : "";
+
   return (
     <div style={{ padding: 20 }}>
+      {/* Message principal avec HTML interprété */}
       <p>
-        <strong>{current.person} :</strong> {current.message}
+        <strong>{current.person} :</strong>{" "}
+        <span dangerouslySetInnerHTML={{ __html: currentHtml }} />
       </p>
 
+      {/* Choix */}
       {choices && (
         <div style={{ marginTop: 10 }}>
           {choices.map((choice, index) => (
@@ -100,15 +139,18 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
         </div>
       )}
 
+      {/* Réponse + next */}
       {selectedAnswer && (
         <div>
           <p style={{ marginTop: 10, fontStyle: "italic" }}>
-            <strong>Mage : </strong> {selectedAnswer}
+            <strong>Mage : </strong>{" "}
+            <span dangerouslySetInnerHTML={{ __html: selectedHtml }} />
           </p>
           <button onClick={nextDialog}>Suivant →</button>
         </div>
       )}
 
+      {/* Next sans choix */}
       {!choices && !selectedAnswer && (
         <button onClick={handleNext}>Suivant →</button>
       )}
