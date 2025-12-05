@@ -4,13 +4,13 @@
         "conversations": [
             {
                 "conversation": [
-                    { "person": "Le Mage", "message": "Salutations, jeunes esprits du lycée Michael Gutnic…", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Je viens d’un monde où chaque humain contrôle son destin numérique. Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Où vos gestes ne nourrissent pas d’immenses machines à profiler.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Où le doom-scroll n’existe pas.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Ce monde… vous en rêvez, n’est-ce pas ?", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Ce monde est possible.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce Grand Remplacement Numérique. Euh non, pardons je m’égare. Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.", "triggerChoice": false }
+                    { "person": "Le Mage", "message": "Salutations, jeunes esprits du lycée Michael Gutnic…", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Je viens d’un monde où chaque humain contrôle son destin numérique. Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève.", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Où vos gestes ne nourrissent pas d’immenses machines à profiler.", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Où le doom-scroll n’existe pas.", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Ce monde… vous en rêvez, n’est-ce pas ?", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Ce monde est possible.", "triggerChoice": -1 },
+                    { "person": "Le Mage", "message": "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce Grand Remplacement Numérique. Euh non, pardons je m’égare. Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.", "triggerChoice": -1 }
                 ]
             }
         ]
@@ -39,10 +39,10 @@
         "conversations": [
             {
                 "conversation": [
-                    { "person": "Mme Marchéoff", "message": "Oh, te voilà.", "triggerChoice": false },
-                    { "person": "Mme Marchéoff", "message": "Regarde-moi ça…", "triggerChoice": false },
-                    { "person": "Mme Marchéoff", "message": "La moitié des ordinateurs ne démarrent plus. Écran bleus de la mort, temps de démarrage interminable, matériel trop vieux pour passer à Windows 11…", "triggerChoice": false  },
-                    { "person": "Mme Marchéoff", "message": "Je me demande…", "triggerChoice": false },
+                    { "person": "Mme Marchéoff", "message": "Oh, te voilà.", "triggerChoice": -1 },
+                    { "person": "Mme Marchéoff", "message": "Regarde-moi ça…", "triggerChoice": -1 },
+                    { "person": "Mme Marchéoff", "message": "La moitié des ordinateurs ne démarrent plus. Écran bleus de la mort, temps de démarrage interminable, matériel trop vieux pour passer à Windows 11…", "triggerChoice": -1  },
+                    { "person": "Mme Marchéoff", "message": "Je me demande…", "triggerChoice": -1 },
                     { "person": "Mme Marchéoff", "message": "Doit-on vraiment continuer avec le même système d’exploitation ? Ou existe-t-il une alternative plus… maîtrisable ?", "triggerChoice": 0 }
                 ]
             }

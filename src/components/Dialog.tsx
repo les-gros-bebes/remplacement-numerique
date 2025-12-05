@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getDialogFromLocation } from "../utils/jsonContentLoader";
+import { getChoicesFromLocation, getDialogFromLocation } from "../utils/jsonContentLoader";
 
 type Message = {
   person: string;
   message: string;
-  triggerChoice: number | boolean
+  triggerChoice: number
 };
 
 type Conversation = {
@@ -36,10 +36,10 @@ export default function Dialog({ locationNumber, conversationIndex }: DialogProp
   const current = messages[messageIndex];
 
   const handleNext = () => {
-    if (current.triggerChoice != false) {
-      
+    if (current.triggerChoice >= 0) {
+      console.log(getChoicesFromLocation(locationNumber, current.triggerChoice))
     }
-    if (messageIndex < messages.length - 1) {
+    else if (messageIndex < messages.length - 1) {
       setMessageIndex(messageIndex + 1);
     } else {
       alert("Fin de la conversation !");
