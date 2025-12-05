@@ -312,6 +312,7 @@ const AS400Terminal: React.FC = () => {
             □
           </Box>
           <Box
+            onClick={() => (window.location.href = "/home")}
             sx={{
               width: 12,
               height: 12,
@@ -323,6 +324,7 @@ const AS400Terminal: React.FC = () => {
               justifyContent: "center",
               fontSize: "10px",
               color: "black",
+              cursor: "pointer",
             }}
           >
             x

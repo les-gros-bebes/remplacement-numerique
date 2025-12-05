@@ -10,8 +10,7 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const wasmInstance = useRef<WebAssembly.Instance | null>(null);
   const memoryRef = useRef<WebAssembly.Memory | null>(null);
 
-  const [consoleLines, setConsoleLines] = useState<string[]>([]);
-  const [lastKey, setLastKey] = useState<string>("");
+  const [showControls, setShowControls] = useState(false);
 
   // Constants from doom.js
   const DOOM_SCREEN_WIDTH = 320 * 2;
@@ -24,10 +23,6 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       }
     };
   }, []);
-
-  const addConsoleLine = (line: string) => {
-    setConsoleLines((prev) => [...prev.slice(-4), line]);
-  };
 
   const startDoom = async () => {
     setStatus("loading");
@@ -66,7 +61,6 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       const consoleLog = (offset: number, length: number) => {
         const string = readWasmString(offset, length);
         console.log("[DOOM]", string);
-        addConsoleLine(string);
       };
 
       const importObject = {
@@ -136,13 +130,50 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         case "Enter":
           return 13;
         case "Space":
-          return 32;
+          return 0x80 + 0x1d; // Fire (was Open)
         case "ControlLeft":
         case "ControlRight":
           return 0x80 + 0x1d;
         case "AltLeft":
         case "AltRight":
           return 0x80 + 0x38;
+        case "ShiftLeft":
+        case "ShiftRight":
+          return 0x80 + 0x36; // KEY_RSHIFT (assuming generic shift maps here)
+        case "Escape":
+          return 27;
+
+        // ZQSD / WASD Mapping to Arrow Keys
+        case "KeyW":
+        case "KeyZ":
+          return 0xad; // Up
+        case "KeyS":
+          return 0xaf; // Down
+        case "KeyA":
+        case "KeyQ":
+          return 0xac; // Left
+        case "KeyD":
+          return 0xae; // Right
+
+        case "KeyE":
+          return 32; // Open/Use (was Space)
+
+        // Weapons
+        case "Digit1":
+          return 49;
+        case "Digit2":
+          return 50;
+        case "Digit3":
+          return 51;
+        case "Digit4":
+          return 52;
+        case "Digit5":
+          return 53;
+        case "Digit6":
+          return 54;
+        case "Digit7":
+          return 55;
+
         default:
           if (code.startsWith("Key")) {
             const charCode = code.charCodeAt(3);
@@ -156,7 +187,6 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       const doomCode = getDoomKeyCode(e.code);
-      setLastKey(`${e.code} (${doomCode})`);
       if (doomCode !== 0 && wasmInstance.current) {
         // @ts-expect-error - add_browser_event is not typed in exports
         wasmInstance.current.exports.add_browser_event(0 /*KeyDown*/, doomCode);
@@ -217,6 +247,11 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           >
             LANCER DOOM
           </Button>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="caption" sx={{ color: "gray" }}>
+              Contrôles : ZQSD, Espace (Tirer), E (Ouvrir)
+            </Typography>
+          </Box>
         </Box>
       )}
 
@@ -249,25 +284,20 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
       {status === "running" && (
         <>
-          <Box
+          <Button
+            onClick={() => setShowControls(!showControls)}
             sx={{
               position: "absolute",
-              bottom: 0,
-              left: 0,
-              width: "100%",
-              bgcolor: "rgba(0,0,0,0.7)",
-              color: "#0f0",
-              fontSize: "10px",
-              p: 0.5,
-              pointerEvents: "none",
-              fontFamily: "monospace",
+              top: 10,
+              left: 10,
+              color: "white",
+              zIndex: 1000,
+              bgcolor: "rgba(0,0,0,0.5)",
+              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
             }}
           >
-            {consoleLines.map((line, i) => (
-              <div key={i}>{line}</div>
-            ))}
-            <div style={{ color: "yellow" }}>Input: {lastKey}</div>
-          </Box>
+            {showControls ? "Cacher Aide" : "Aide"}
+          </Button>
 
           <Button
             onClick={onClose}
@@ -277,10 +307,61 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               right: 10,
               color: "white",
               zIndex: 1000,
+              bgcolor: "rgba(0,0,0,0.5)",
+              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
             }}
           >
             Fermer
           </Button>
+
+          {showControls && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bgcolor: "rgba(0, 0, 100, 0.9)",
+                border: "2px solid white",
+                p: 3,
+                zIndex: 2000,
+                textAlign: "left",
+                minWidth: 300,
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ mb: 2, color: "yellow", textAlign: "center" }}
+              >
+                CONTRÔLES
+              </Typography>
+              <Box
+                sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1 }}
+              >
+                <Typography>ZQSD / Flèches</Typography>{" "}
+                <Typography>Se déplacer</Typography>
+                <Typography>Espace / CTRL</Typography>{" "}
+                <Typography>Tirer</Typography>
+                <Typography>E</Typography>{" "}
+                <Typography>Ouvrir / Utiliser</Typography>
+                <Typography>Shift</Typography> <Typography>Courir</Typography>
+                <Typography>1-7</Typography> <Typography>Armes</Typography>
+                <Typography>Entrée</Typography> <Typography>Valider</Typography>
+                <Typography>Echap</Typography> <Typography>Menu</Typography>
+              </Box>
+              <Typography
+                variant="caption"
+                sx={{
+                  display: "block",
+                  mt: 2,
+                  textAlign: "center",
+                  color: "gray",
+                }}
+              >
+                (Pas de support souris)
+              </Typography>
+            </Box>
+          )}
         </>
       )}
     </Box>
