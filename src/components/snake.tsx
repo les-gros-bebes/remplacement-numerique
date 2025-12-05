@@ -115,14 +115,31 @@ const SnakeGame: React.FC = () => {
         padding: "20px",
       }}
     >
-      <h1 style={{ color: "#333", fontSize: "2rem" }}>Snake Game</h1>
-      <p style={{ fontSize: "1.2rem", color: "#555" }}>Score: {score}</p>
+      <h1
+        style={{
+          color: "#333",
+          fontSize: "2rem",
+          fontFamily: "Autour One, sans-serif",
+        }}
+      >
+        Snake Game
+      </h1>
+      <p
+        style={{
+          fontSize: "1.2rem",
+          color: "#999",
+          fontFamily: "Autour One, sans-serif",
+        }}
+      >
+        Score: {score}
+      </p>
       {gameOver && (
         <p
           style={{
             color: "red",
             fontWeight: "bold",
             fontSize: "1.5rem",
+            fontFamily: "Autour One, sans-serif",
           }}
         >
           Game Over! Appuyez sur espace pour recommencer.
@@ -145,18 +162,24 @@ const SnakeGame: React.FC = () => {
             const isSnake = snake.some(
               (segment) => segment[0] === col && segment[1] === row
             );
+            const isHead =
+              snake[snake.length - 1][0] === col &&
+              snake[snake.length - 1][1] === row;
             const isFood = food[0] === col && food[1] === row;
+
             return (
               <Box
                 key={`${row}-${col}`}
                 sx={{
                   width: "20px",
                   height: "20px",
-                  backgroundColor: isSnake
-                    ? "#4caf50"
+                  backgroundColor: isHead
+                    ? "#2e7d32" // Couleur plus foncée pour la tête
+                    : isSnake
+                    ? "#4caf50" // Couleur normale pour le corps
                     : isFood
-                    ? "#ff5722"
-                    : "#e0e0e0",
+                    ? "#ff5722" // Couleur pour la nourriture
+                    : "#e0e0e0", // Couleur pour les cellules vides
                   border: "1px solid #ddd",
                   borderRadius: isSnake ? "5px" : isFood ? "50%" : "0",
                   boxShadow: isSnake
