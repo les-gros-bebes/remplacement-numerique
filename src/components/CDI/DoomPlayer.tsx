@@ -9,8 +9,6 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const requestRef = useRef<number | undefined>(undefined);
   const wasmInstance = useRef<WebAssembly.Instance | null>(null);
   const memoryRef = useRef<WebAssembly.Memory | null>(null);
-  const handleKeyDownRef = useRef<((e: KeyboardEvent) => void) | null>(null);
-  const handleKeyUpRef = useRef<((e: KeyboardEvent) => void) | null>(null);
 
   const [consoleLines, setConsoleLines] = useState<string[]>([]);
   const [lastKey, setLastKey] = useState<string>("");
@@ -23,12 +21,6 @@ const DoomPlayer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     return () => {
       if (requestRef.current !== undefined) {
         cancelAnimationFrame(requestRef.current);
-      }
-      if (handleKeyDownRef.current) {
-        window.removeEventListener("keydown", handleKeyDownRef.current);
-      }
-      if (handleKeyUpRef.current) {
-        window.removeEventListener("keyup", handleKeyUpRef.current);
       }
     };
   }, []);
