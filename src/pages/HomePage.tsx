@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "/assets/planecole.png";
+import Star from "/assets/star.png";
+import wizardImg from "/assets/magicien.png";
 import WizardIntro from "../components/WizardIntro";
 import WizardOutro from "../components/WizardOutro";
-import Star from "/assets/star.png";
 import useSavedState from "../utils/useSavedState";
+import useImagePreload from "../utils/useImagePreload";
 
 type Hotspot = {
   id: string;
@@ -31,7 +33,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "bureau",
-    label: "Bureau du directeur - Boss final",
+    label: "Bureau du directeur - Boss finale",
     route: "/bureau",
     left: "37.1%",
     top: "11.8%",
@@ -72,16 +74,19 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // suivi des lieux déjà visités, sauvegardé en localStorage
+  // Lieux visités (persistés en localStorage)
   const [visited, setVisited] = useSavedState<number[]>(
     "visited",
     [0, 0, 0, 0, 0]
   );
 
-  // 🔧 Active/désactive l’intro (en prod tu peux mettre true, en dev false si besoin)
+  // Intro ON/OFF (tu peux mettre false en dev si tu veux zapper)
   const INTRO_ENABLED = true;
 
-  // Init introDone à partir du localStorage
+  // Préchargement des images importantes
+  const assetsReady = useImagePreload([lyceeMap, Star, wizardImg]);
+
+  // Intro déjà faite ?
   const [introDone, setIntroDone] = useState(() => {
     if (!INTRO_ENABLED) return true;
     if (typeof window === "undefined") return false;
@@ -90,7 +95,7 @@ const HomePage: React.FC = () => {
     return stored === "true";
   });
 
-  // Outro : a-t-elle déjà été vue ?
+  // Outro déjà vue ?
   const [outroDone, setOutroDone] = useState(() => {
     if (typeof window === "undefined") return false;
     const stored = window.localStorage.getItem("wizardOutroDone");
@@ -115,13 +120,33 @@ const HomePage: React.FC = () => {
 
   const handleVisit = (index: number, route: string) => {
     setVisited((prev: number[]) => {
-      const newVisited = [...prev];
-      newVisited[index] = 1;
-      return newVisited;
+      const next = [...prev];
+      next[index] = 1;
+      return next;
     });
-
     navigate(route);
   };
+
+  // Tant que les images ne sont pas chargées : écran de loading
+  if (!assetsReady) {
+    return (
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "black",
+          color: "white",
+        }}
+      >
+        <Typography variant="h6">
+          Chargement de ta quête numérique… ⚡
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -134,6 +159,25 @@ const HomePage: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
+      {/* HEADER (optionnel) */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
+          textAlign: "center",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          px: 3,
+          py: 2,
+          borderRadius: 3,
+          backdropFilter: "blur(4px)",
+          maxWidth: "90vw",
+        }}
+      >
+        {/* Remets un titre si tu veux */}
+      </Box>
+
       {/* HOTSPOTS desktop – seulement après l’intro */}
       {introDone &&
         !isSmall &&
@@ -240,12 +284,12 @@ const HomePage: React.FC = () => {
         </Box>
       )}
 
-      {/* OVERLAY DU MAGICIEN – intro */}
+      {/* Intro – magicien au début */}
       {INTRO_ENABLED && !introDone && (
         <WizardIntro onFinish={handleIntroFinish} />
       )}
 
-      {/* OVERLAY DU MAGICIEN – outro (seulement si tout visité + jamais vue) */}
+      {/* Outro – quand tout est visité et que pas encore vue */}
       {allVisited && !outroDone && <WizardOutro onFinish={handleOutroFinish} />}
     </Box>
   );
