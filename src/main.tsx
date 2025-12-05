@@ -7,9 +7,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppProvider from "./AppContext.tsx";
 
-const lightThemeAvailable = true;
-const darkThemeAvailable = false;
-
 interface CustomPaletteColor {
   accent: string;
 }
@@ -29,32 +26,13 @@ const theme = createTheme({
     fontFamily: "Autour One, sans-serif",
   },
   colorSchemes: {
-    light: lightThemeAvailable && {
-      palette: {
-        primary: {
-          main: "#0000ff",
-        },
-        custom: {
-          accent: "#ff0000",
-        },
-        text: {
-          primary: "#ffffff",
-        },
-      },
-    },
-    dark: darkThemeAvailable && {
-      palette: {
-        primary: {
-          main: "#00ff00",
-        },
-        custom: {
-          accent: "#ff0000",
-        },
-        text: {
-          primary: "#ffffff",
-        },
-      },
-    },
+    // light: lightThemeAvailable && {
+    //   palette: {
+    //     primary: {
+    //       main: "#eaddbb",
+    //     },
+    //   },
+    // },
   },
 });
 
