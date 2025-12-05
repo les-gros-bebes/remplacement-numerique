@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Paper, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import wizardImg from "/assets/magicien.png"; // adapte le chemin
 
 type WizardIntroProps = {
