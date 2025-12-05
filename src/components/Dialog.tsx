@@ -3,6 +3,7 @@ import {
   getChoicesFromLocation,
   getDialogFromLocation,
 } from "../utils/jsonContentLoader";
+import { useNavigate } from "react-router";
 
 type Message = {
   person: string;
@@ -26,21 +27,19 @@ type DialogProps = {
   conversationIndex: number;
 };
 
-export default function Dialog({
-  locationNumber,
-  conversationIndex,
-}: DialogProps) {
-  // ✅ On dérive directement le dialogue des props, sans état et sans useEffect
-  const dialog = getDialogFromLocation(
-    locationNumber,
-    conversationIndex
-  ) as Conversation | null;
+export default function Dialog({ locationNumber, conversationIndex }: DialogProps) {
+  const [dialogIndex, setDialogIndex] = useState(conversationIndex);
+  const [dialog, setDialog] = useState<Conversation | null>(
+    getDialogFromLocation(locationNumber, conversationIndex) as Conversation | null
+  );
 
   const [messageIndex, setMessageIndex] = useState(0);
   const [choices, setChoices] = useState<Choice[] | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
-  if (!dialog) return <p>Pas de dialogue trouvé…</p>;
+  const navigate = useNavigate();
+
+  if (!dialog) {navigate("/"); return}
 
   const messages = dialog.conversation;
   const current = messages[messageIndex];
@@ -70,6 +69,17 @@ export default function Dialog({
     setChoices(null);
   };
 
+  const nextDialog = () => {
+    const newIndex = dialogIndex + 1;
+    const newDialog = getDialogFromLocation(locationNumber, newIndex) as Conversation | null;
+
+    setDialogIndex(newIndex);
+    setDialog(newDialog);   // 🔥 ceci force le re-render et met à jour le dialogue
+    setMessageIndex(0);
+    setChoices(null);
+    setSelectedAnswer(null);
+  };
+
   return (
     <div style={{ padding: 20 }}>
       <p>
@@ -91,9 +101,12 @@ export default function Dialog({
       )}
 
       {selectedAnswer && (
-        <p style={{ marginTop: 10, fontStyle: "italic" }}>
-          <strong>Mage : </strong> {selectedAnswer}
-        </p>
+        <div>
+          <p style={{ marginTop: 10, fontStyle: "italic" }}>
+            <strong>Mage : </strong> {selectedAnswer}
+          </p>
+          <button onClick={nextDialog}>Suivant →</button>
+        </div>
       )}
 
       {!choices && !selectedAnswer && (
