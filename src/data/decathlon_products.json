@@ -1,0 +1,82 @@
+[
+  {
+    "id": "domyos_mat",
+    "name": "Tapis de sol Fitness 10mm",
+    "category": "Fitness",
+    "description": "Indispensable pour le confort lors des exercices au sol (gainage, abdos, étirements).",
+    "price": 29.99,
+    "url": "https://www.decathlon.fr/p/tapis-de-pilates-confort-epaisseur-15-mm-bordeaux/_/R-p-351006?mc=8851736&c=vert"
+  },
+  {
+    "id": "resistance_bands",
+    "name": "Élastiques de résistance (Set)",
+    "category": "Musculation",
+    "description": "Idéal pour ajouter de la difficulté aux exercices au poids du corps sans encombrement.",
+    "price": 15.99,
+    "url": "https://www.decathlon.fr/p/pack-de-3-elastiques-textiles-pour-fessier-de-fitness/_/R-p-353227?mc=8872877"
+  },
+  {
+    "id": "dumbbells_kit",
+    "name": "Kit Haltères 10kg",
+    "category": "Musculation",
+    "description": "Pour progresser sur le haut du corps et les fentes. Modulable selon votre niveau.",
+    "price": 59.5,
+    "url": "https://www.decathlon.fr/p/mp/hms/kit-6-en-1-avec-poids-sgn-hms/_/R-p-ee27ce40-0780-4a92-b1f2-144fcc04b106?mc=ee27ce40-0780-4a92-b1f2-144fcc04b106_c1c14&c=noir_rouge"
+  },
+  {
+    "id": "kettlebell",
+    "name": "Kettlebell 8kg",
+    "category": "Cross Training",
+    "description": "Parfait pour des exercices polyvalents alliant cardio et renforcement.",
+    "price": 24.99,
+    "url": "https://www.decathlon.fr/p/kettlebell-en-fonte-et-base-caoutchouc-8-kg-compose-a-80-percent-de-fonte-recyclee/_/R-p-152873?mc=8354815&c=noir_bleu"
+  },
+  {
+    "id": "foam_roller",
+    "name": "Rouleau de massage (Foam Roller)",
+    "category": "Récupération",
+    "description": "Pour soulager les tensions musculaires après la séance.",
+    "price": null,
+    "url": "https://www.decathlon.fr/p/rouleau-de-massage-foam-roller-500-hard/_/R-p-174672"
+  },
+  {
+    "id": "pull_up_bar",
+    "name": "Barre de traction",
+    "category": "Musculation",
+    "description": "Pour travailler le dos et les bras.",
+    "price": 29.99,
+    "url": "https://www.decathlon.fr/p/barre-de-traction-pour-porte-avec-verrouillage-bt-150-70-cm/_/R-p-325833?mc=8588490"
+  },
+  {
+    "id": "jump_rope",
+    "name": "Corde à sauter",
+    "category": "Cardio",
+    "description": "L'accessoire ultime pour le cardio et l'échauffement.",
+    "price": 12.99,
+    "url": "https://www.decathlon.fr/p/corde-a-sauter-de-vitesse-bleue/_/R-p-331971?mc=8641821&c=noir_vert"
+  },
+  {
+    "id": "ab_wheel",
+    "name": "Ab Wheel (Roue à abdos)",
+    "category": "Musculation",
+    "description": "Pour un gainage dynamique intense.",
+    "price": 9.99,
+    "url": "https://www.decathlon.fr/p/roue-abdominale-musculation-ab-wheel-bi-mode-noire/_/R-p-335943?mc=8666380"
+  },
+  {
+    "id": "push_up_bars",
+    "name": "Poignées de pompes",
+    "category": "Musculation",
+    "description": "Pour soulager les poignets et augmenter l'amplitude.",
+    "price": 59.99,
+    "url": "https://www.decathlon.fr/p/barres-a-dips-reglables-et-compactes-ts-100/_/R-p-354940?mc=8882305"
+  },
+  {
+    "id": "weighted_vest",
+    "name": "Gilet lesté 7kg",
+    "category": "Musculation",
+    "description": "Pour augmenter la difficulté de tous les exercices au poids du corps.",
+    "price": 54.99,
+    "url": "https://www.decathlon.fr/p/mp/tremblay/veste-neoprene-lestee-tremblay-7-kg/_/R-p-613b32bb-9341-4afc-bbf7-0c9ade04d656?mc=613b32bb-9341-4afc-bbf7-0c9ade04d656_c1"
+  }
+]

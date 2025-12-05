@@ -1,0 +1,282 @@
+{
+  "qcm": [
+    {
+      "id": 1,
+      "question": "Quel est votre objectif principal ?",
+      "options": [
+        { "text": "Perdre du poids", "value": "weight_loss" },
+        { "text": "Prendre du muscle", "value": "muscle_gain" },
+        { "text": "Améliorer mon endurance", "value": "endurance" },
+        { "text": "Gagner en souplesse et me détendre", "value": "flexibility" }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Quel est votre niveau d'activité physique actuel ?",
+      "options": [
+        {
+          "text": "Débutant (je ne fais jamais de sport)",
+          "value": "beginner"
+        },
+        {
+          "text": "Intermédiaire (1 à 2 fois par semaine)",
+          "value": "intermediate"
+        },
+        { "text": "Avancé (3 fois par semaine ou plus)", "value": "advanced" }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Combien de temps pouvez-vous consacrer à une séance ?",
+      "options": [
+        { "text": "Moins de 20 minutes", "value": "short" },
+        { "text": "20 à 45 minutes", "value": "medium" },
+        { "text": "Plus de 45 minutes", "value": "long" }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Où préférez-vous vous entraîner ?",
+      "options": [
+        { "text": "À la maison", "value": "home" },
+        { "text": "En extérieur", "value": "outdoor" },
+        { "text": "En salle de sport", "value": "gym" }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Avez-vous accès à du matériel ?",
+      "options": [
+        { "text": "Aucun matériel (poids du corps)", "value": "none" },
+        {
+          "text": "Matériel de base (tapis, élastiques, haltères légers)",
+          "value": "basic"
+        },
+        {
+          "text": "Équipement complet (machines, barres, etc.)",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Avez-vous des douleurs ou limitations physiques ?",
+      "options": [
+        { "text": "Aucune", "value": "none" },
+        { "text": "Dos sensible", "value": "back" },
+        { "text": "Genoux fragiles", "value": "knees" },
+        { "text": "Épaules fragiles", "value": "shoulders" }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Quel type d'effort préférez-vous ?",
+      "options": [
+        { "text": "Intense et court (HIIT)", "value": "hiit" },
+        { "text": "Modéré et long (Cardio)", "value": "cardio" },
+        { "text": "Lent et contrôlé (Musculation/Yoga)", "value": "strength" }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Qu'est-ce qui vous motive le plus ?",
+      "options": [
+        { "text": "Voir des résultats physiques", "value": "visual" },
+        { "text": "Me sentir mieux dans mon corps", "value": "feeling" },
+        { "text": "Me dépasser", "value": "challenge" },
+        { "text": "Me vider la tête", "value": "mental" }
+      ]
+    }
+  ],
+  "profiling_logic": "Le profil est déterminé principalement par l'objectif (Q1) et le niveau (Q2). Les autres réponses (temps, lieu, matériel) servent à filtrer ou adapter les exercices. Par exemple, si Q1='weight_loss' et Q2='beginner', le profil de base est 'Perte de poids Débutant'. Si Q5='none', on privilégie les exercices au poids du corps.",
+  "user_profile_example": {
+    "profile_name": "Remise en forme Tonique - Débutant",
+    "description": "Un programme accessible pour brûler des calories et tonifier l'ensemble du corps sans impact violent.",
+    "goal": "weight_loss",
+    "level": "beginner",
+    "equipment": "basic"
+  },
+  "exercises": [
+    {
+      "id": "squat_basic",
+      "name": "Squat au poids du corps",
+      "tags": ["legs", "strength", "beginner", "home"],
+      "media": {
+        "default": "air-squat.gif",
+        "variants": {
+          "beginner": "air-squat.gif",
+          "advanced": "air-squat.gif"
+        }
+      },
+      "variations": {
+        "basic": {
+          "name": "Goblet Squat (avec haltère)",
+          "media": "goblet-squat.gif",
+          "instructions": {
+            "posture": "Debout, tenez un haltère ou kettlebell contre votre poitrine avec les deux mains. Coudes rentrés.",
+            "execution": "Descendez en squat en gardant le dos bien droit et le poids collé à la poitrine. Remontez.",
+            "breathing": "Inspirez en descendant, expirez en montant.",
+            "common_errors": "Le poids qui part vers l'avant, le dos qui s'arrondit.",
+            "adaptation_by_level": "Ajustez la charge selon votre force."
+          },
+          "related_product_id": "dumbbells_kit"
+        },
+        "full": {
+          "name": "Barbell Squat (Squat barre)",
+          "media": "barbell-squat.gif",
+          "instructions": {
+            "posture": "Barre posée sur les trapèzes (pas la nuque !), pieds largeur d'épaules.",
+            "execution": "Squat classique avec la charge. Gardez le buste fier.",
+            "breathing": "Inspirez et bloquez (manoeuvre de Valsalva) à la descente, expirez après le point difficile de la montée.",
+            "common_errors": "Genoux qui rentrent, buste qui penche trop en avant.",
+            "adaptation_by_level": "Commencez barre à vide pour la technique."
+          }
+        }
+      },
+      "instructions": {
+        "posture": "Debout, pieds largeur d'épaules, orteils légèrement vers l'extérieur. Dos droit, regard loin devant.",
+        "execution": "Fléchissez les jambes en poussant les fesses vers l'arrière comme pour vous asseoir. Descendez jusqu'à ce que les cuisses soient parallèles au sol (ou aussi bas que possible sans douleur). Remontez en poussant sur les talons.",
+        "breathing": "Inspirez à la descente, expirez à la montée.",
+        "common_errors": "Genoux qui rentrent vers l'intérieur, dos qui s'arrondit, talons qui décollent du sol.",
+        "adaptation_by_level": "Débutant: Descendre moins bas ou s'aider d'une chaise. Intermédiaire: Squat complet. Avancé: Squat sauté (Jump Squat)."
+      },
+      "illustration": {
+        "ascii": "   O\n  /|\\\n  / \\\n\n   O\n  /|\\\n  _ _",
+        "image_prompt": "Minimalist line drawing of a person performing a bodyweight squat, showing the standing position and the lowered position, side view, white background."
+      }
+    },
+    {
+      "id": "pushup_knees",
+      "name": "Pompes (sur genoux ou pieds)",
+      "tags": ["chest", "arms", "strength", "home"],
+      "media": {
+        "default": "pushup-knees.webp",
+        "variants": {
+          "beginner": "pushup-knees.webp",
+          "advanced": "push-up.webp"
+        }
+      },
+      "variations": {
+        "basic": {
+          "name": "Pompes sur haltères (Déficit)",
+          "media": "deficit-pushups.gif",
+          "instructions": {
+            "posture": "Mains sur les haltères au sol. Cela augmente l'amplitude.",
+            "execution": "Descendez la poitrine plus bas que le niveau des mains pour bien étirer les pectoraux.",
+            "breathing": "Inspirez descente, expirez montée.",
+            "common_errors": "Descendre trop bas si douleurs d'épaules.",
+            "adaptation_by_level": "Sur les genoux si trop dur."
+          },
+          "related_product_id": "dumbbells_kit"
+        },
+        "full": {
+          "name": "Développé Couché (Barre)",
+          "media": "bench-press.gif",
+          "instructions": {
+            "posture": "Allongé sur le banc, yeux sous la barre. Prise un peu plus large que les épaules.",
+            "execution": "Descendez la barre contrôlée jusqu'au milieu de la poitrine. Poussez vers le haut.",
+            "breathing": "Inspirez descente, expirez poussée.",
+            "common_errors": "Rebondir sur la poitrine, décoller les fesses.",
+            "adaptation_by_level": "Assurez-vous d'avoir un pareur."
+          }
+        }
+      },
+      "instructions": {
+        "posture": "Mains au sol plus larges que les épaules, corps gainé aligné (tête, dos, fesses). Sur les genoux pour débuter, sur les pieds pour plus de difficulté.",
+        "execution": "Fléchissez les bras pour amener la poitrine près du sol. Poussez pour revenir en position initiale.",
+        "breathing": "Inspirez à la descente, expirez à la poussée.",
+        "common_errors": "Dos cambré, fesses trop hautes, tête qui tombe.",
+        "adaptation_by_level": "Débutant: Sur les genoux ou mains surélevées (mur/banc). Intermédiaire: Pompes classiques. Avancé: Pompes diamants ou pieds surélevés."
+      },
+      "illustration": {
+        "ascii": "      __O\n    /  _\\\n   /  /  \\\n\n   __O\n  /_ _\\\n / /  \\",
+        "image_prompt": "Minimalist line drawing of a person performing a push-up, showing the high plank position and the low position, side view, white background."
+      }
+    },
+    {
+      "id": "plank",
+      "name": "Gainage planche (Plank)",
+      "tags": ["core", "abs", "static", "home"],
+      "related_product_id": "domyos_mat",
+      "media": {
+        "default": "plank.gif",
+        "variants": {
+          "beginner": "plank.gif",
+          "advanced": "plank.gif"
+        }
+      },
+      "instructions": {
+        "posture": "En appui sur les avant-bras et les orteils (ou genoux). Coudes sous les épaules. Corps aligné.",
+        "execution": "Maintenez la position sans bouger, en contractant fort les abdos et les fessiers. Ne laissez pas le bassin s'affaisser ni monter trop haut.",
+        "breathing": "Respiration calme et régulière, ne bloquez pas votre souffle.",
+        "common_errors": "Dos creusé (très mauvais !), fesses en l'air, tête rentrée dans les épaules.",
+        "adaptation_by_level": "Débutant: Sur les genoux, tenir 20s. Intermédiaire: Sur les pieds, tenir 45s. Avancé: Lever une jambe ou un bras, tenir 1min+."
+      },
+      "illustration": {
+        "ascii": "     O\n   //_\\\\\n  //   \\\\",
+        "image_prompt": "Minimalist line drawing of a person in a forearm plank position, perfect straight line from head to heels, side view, white background."
+      }
+    },
+    {
+      "id": "lunges",
+      "name": "Fentes alternées",
+      "tags": ["legs", "balance", "strength", "home"],
+      "media": {
+        "default": "lunge.gif",
+        "variants": {
+          "beginner": "lunge.gif",
+          "advanced": "lunge.gif"
+        }
+      },
+      "variations": {
+        "basic": {
+          "name": "Fentes avec haltères",
+          "media": "weighted-lunges.gif",
+          "instructions": {
+            "posture": "Debout, un haltère dans chaque main, bras le long du corps.",
+            "execution": "Faites vos fentes en gardant les bras tendus et le dos droit. Le poids ajoute de la difficulté.",
+            "breathing": "Inspirez descente, expirez montée.",
+            "common_errors": "Balancement du buste, genou avant qui rentre.",
+            "adaptation_by_level": "Commencez léger."
+          },
+          "related_product_id": "dumbbells_kit"
+        }
+      },
+      "instructions": {
+        "posture": "Debout, pieds largeur de bassin, mains sur les hanches.",
+        "execution": "Faites un grand pas en avant. Fléchissez les deux jambes jusqu'à ce que le genou arrière frôle le sol (angles de 90° aux genoux). Poussez sur la jambe avant pour revenir. Changez de jambe.",
+        "breathing": "Inspirez en descendant, expirez en remontant.",
+        "common_errors": "Genou avant qui dépasse la pointe du pied, dos voûté, déséquilibre latéral.",
+        "adaptation_by_level": "Débutant: Fentes arrière (plus stables). Intermédiaire: Fentes avant marchées. Avancé: Fentes sautées."
+      },
+      "illustration": {
+        "ascii": "   O      O\n  /|\\    /|\\\n  / \\    _|_",
+        "image_prompt": "Minimalist line drawing of a person performing a lunge, showing the standing start and the lunge position, side view, white background."
+      }
+    },
+    {
+      "id": "mountain_climber",
+      "name": "Mountain Climber",
+      "tags": ["cardio", "core", "hiit", "home"],
+      "related_product_id": "domyos_mat",
+      "media": {
+        "default": "mountain-climber.gif",
+        "variants": {
+          "beginner": "mountain-climber.gif",
+          "advanced": "mountain-climber.gif"
+        }
+      },
+      "instructions": {
+        "posture": "Position de pompes (planche haute), bras tendus, corps aligné.",
+        "execution": "Ramenez dynamiquement un genou vers la poitrine, puis l'autre, comme si vous couriez sur place en position horizontale. Gardez le bassin stable.",
+        "breathing": "Soufflez régulièrement, trouvez un rythme.",
+        "common_errors": "Fesses qui montent trop haut, bassin qui bouge de gauche à droite, impact trop lourd au sol.",
+        "adaptation_by_level": "Débutant: Lentement, sans saut. Intermédiaire: Rythme modéré. Avancé: Très rapide (sprint)."
+      },
+      "illustration": {
+        "ascii": "    __O\n   / /\\\n  /_/  \\",
+        "image_prompt": "Minimalist line drawing of a person performing mountain climbers, high plank position with one knee tucked in, side view, white background."
+      }
+    }
+  ]
+}
