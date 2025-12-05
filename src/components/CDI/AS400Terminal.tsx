@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import Tetris from "./Tetris";
+import Windows95 from "./Windows95";
 
 type DialogueStep = {
   id: string;
@@ -27,6 +28,7 @@ const AS400Terminal: React.FC = () => {
   const [inputBuffer, setInputBuffer] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [showTetris, setShowTetris] = useState(false);
+  const [showWin95, setShowWin95] = useState(false);
 
   const step = DIALOGUE_TREE[currentStepId] || FALLBACK_STEP;
 
@@ -62,12 +64,19 @@ const AS400Terminal: React.FC = () => {
   // Keyboard input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (showTetris) return;
+      if (showTetris || showWin95) return;
 
       // Rick Roll Easter Egg
       if (e.key === "F3") {
         e.preventDefault();
         window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+        return;
+      }
+
+      // Windows 95 Easter Egg
+      if (e.key === "F4") {
+        e.preventDefault();
+        setShowWin95(true);
         return;
       }
 
@@ -118,7 +127,7 @@ const AS400Terminal: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [step, isTyping, inputBuffer, showTetris]);
+  }, [step, isTyping, inputBuffer, showTetris, showWin95]);
 
   // Animation state
   const [showErrorSequence, setShowErrorSequence] = useState(false);
@@ -423,7 +432,8 @@ const AS400Terminal: React.FC = () => {
         }}
       >
         {showTetris && <Tetris onClose={() => setShowTetris(false)} />}
-        {!showTetris && (
+        {showWin95 && <Windows95 onClose={() => setShowWin95(false)} />}
+        {!showTetris && !showWin95 && (
           <>
             {/* Header Info */}
             <Box
@@ -571,15 +581,32 @@ const AS400Terminal: React.FC = () => {
               }}
             >
               <Typography
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    "_blank"
+                  )
+                }
                 sx={{
                   fontFamily: "inherit",
                   color: hintGlitch ? "red" : "inherit",
                   fontWeight: hintGlitch ? "bold" : "normal",
+                  cursor: "pointer",
                 }}
               >
                 F3=Exit
               </Typography>
-              <Typography sx={{ fontFamily: "inherit" }}>F4=Prompt</Typography>
+              <Typography
+                onClick={() => setShowWin95(true)}
+                sx={{
+                  fontFamily: "inherit",
+                  color: hintGlitch ? "red" : "inherit",
+                  fontWeight: hintGlitch ? "bold" : "normal",
+                  cursor: "pointer",
+                }}
+              >
+                F4=Prompt
+              </Typography>
               <Typography sx={{ fontFamily: "inherit" }}>
                 F9=Retrieve
               </Typography>
