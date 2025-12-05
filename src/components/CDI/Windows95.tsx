@@ -19,22 +19,18 @@ const DesktopIcon: React.FC<{
       "&:active": { opacity: 0.7 },
     }}
   >
-    {/* Simple CSS Icon Placeholder */}
+    {/* Icon Image */}
     <Box
+      component="img"
+      src={icon}
+      alt={label}
       sx={{
         width: 32,
         height: 32,
-        bgcolor: "transparent",
-        border: "2px solid white",
         mb: 0.5,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "20px",
+        imageRendering: "pixelated",
       }}
-    >
-      {icon}
-    </Box>
+    />
     <Typography
       variant="caption"
       sx={{
@@ -85,13 +81,20 @@ const Windows95: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
+          gap: 2,
         }}
       >
-        <DesktopIcon label="My Computer" icon="💻" />
-        <DesktopIcon label="Recycle Bin" icon="🗑️" />
+        <DesktopIcon
+          label="My Computer"
+          icon="https://win98icons.alexmeub.com/icons/png/computer_explorer-0.png"
+        />
+        <DesktopIcon
+          label="Recycle Bin"
+          icon="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png"
+        />
         <DesktopIcon
           label="Doom.exe"
-          icon="👿"
+          icon="https://win98icons.alexmeub.com/icons/png/ms_dos-1.png"
           onClick={(e) => {
             e?.stopPropagation();
             setShowDoom(true);
@@ -278,9 +281,9 @@ const Windows95: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           }}
         >
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Windows_logo_and_wordmark_-_1995-2001.svg/512px-Windows_logo_and_wordmark_-_1995-2001.svg.png"
+            src="https://win98icons.alexmeub.com/icons/png/windows-0.png"
             alt="win"
-            style={{ height: 14 }}
+            style={{ height: 16, width: 16, marginRight: 4 }}
           />
           Start
         </Box>
