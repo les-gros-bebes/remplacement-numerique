@@ -5,6 +5,9 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "/assets/planecole.png";
 import WizardIntro from "../components/WizardIntro";
+import WizardOutro from "../components/WizardOutro";
+import Star from "/assets/star.png";
+import useSavedState from "../utils/useSavedState";
 
 type Hotspot = {
   id: string;
@@ -28,7 +31,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "bureau",
-    label: "Bureau du directeur - Boss finale",
+    label: "Bureau du directeur - Boss final",
     route: "/bureau",
     left: "37.1%",
     top: "11.8%",
@@ -69,24 +72,55 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // suivi des lieux déjà visités, sauvegardé en localStorage
+  const [visited, setVisited] = useSavedState<number[]>(
+    "visited",
+    [0, 0, 0, 0, 0]
+  );
+
   // 🔧 Active/désactive l’intro (en prod tu peux mettre true, en dev false si besoin)
   const INTRO_ENABLED = true;
 
-  // 🔁 Init à partir du localStorage (si déjà passé, on ne réaffiche plus)
+  // Init introDone à partir du localStorage
   const [introDone, setIntroDone] = useState(() => {
-    if (!INTRO_ENABLED) return true; // si désactivé, on skip direct
-
-    if (typeof window === "undefined") return false; // sécurité SSR éventuelle
+    if (!INTRO_ENABLED) return true;
+    if (typeof window === "undefined") return false;
 
     const stored = window.localStorage.getItem("wizardIntroDone");
     return stored === "true";
   });
+
+  // Outro : a-t-elle déjà été vue ?
+  const [outroDone, setOutroDone] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const stored = window.localStorage.getItem("wizardOutroDone");
+    return stored === "true";
+  });
+
+  const allVisited = visited.every((v) => v === 1);
 
   const handleIntroFinish = () => {
     setIntroDone(true);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("wizardIntroDone", "true");
     }
+  };
+
+  const handleOutroFinish = () => {
+    setOutroDone(true);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("wizardOutroDone", "true");
+    }
+  };
+
+  const handleVisit = (index: number, route: string) => {
+    setVisited((prev: number[]) => {
+      const newVisited = [...prev];
+      newVisited[index] = 1;
+      return newVisited;
+    });
+
+    navigate(route);
   };
 
   return (
@@ -100,32 +134,13 @@ const HomePage: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* HEADER (actuellement vide / commenté) */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: 16,
-          left: "50%",
-          transform: "translateX(-50%)",
-          textAlign: "center",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          px: 3,
-          py: 2,
-          borderRadius: 3,
-          backdropFilter: "blur(4px)",
-          maxWidth: "90vw",
-        }}
-      >
-        {/* Titre/texte si tu veux les remettre */}
-      </Box>
-
       {/* HOTSPOTS desktop – seulement après l’intro */}
       {introDone &&
         !isSmall &&
-        HOTSPOTS.map((spot) => (
+        HOTSPOTS.map((spot, index) => (
           <Box
             key={spot.id}
-            onClick={() => navigate(spot.route)}
+            onClick={() => handleVisit(index, spot.route)}
             sx={{
               position: "absolute",
               left: spot.left,
@@ -141,6 +156,22 @@ const HomePage: React.FC = () => {
               },
             }}
           >
+            {visited[index] === 1 && (
+              <img
+                src={Star}
+                height={"40%"}
+                style={{
+                  animation: "spin 5s linear infinite",
+                  position: "absolute",
+                  opacity: 0.8,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(-50%) translateY(-50%)",
+                  pointerEvents: "none",
+                }}
+              />
+            )}
+
             <Box
               sx={{
                 position: "absolute",
@@ -180,10 +211,10 @@ const HomePage: React.FC = () => {
               gap: 1.5,
             }}
           >
-            {HOTSPOTS.map((spot) => (
+            {HOTSPOTS.map((spot, index) => (
               <Box
                 key={spot.id}
-                onClick={() => navigate(spot.route)}
+                onClick={() => handleVisit(index, spot.route)}
                 sx={{
                   cursor: "pointer",
                   borderRadius: 2,
@@ -209,10 +240,13 @@ const HomePage: React.FC = () => {
         </Box>
       )}
 
-      {/* OVERLAY DU MAGICIEN – seulement si l’intro est activée et pas encore finie */}
+      {/* OVERLAY DU MAGICIEN – intro */}
       {INTRO_ENABLED && !introDone && (
         <WizardIntro onFinish={handleIntroFinish} />
       )}
+
+      {/* OVERLAY DU MAGICIEN – outro (seulement si tout visité + jamais vue) */}
+      {allVisited && !outroDone && <WizardOutro onFinish={handleOutroFinish} />}
     </Box>
   );
 };

@@ -272,45 +272,6 @@
                         "triggerChoice": 0
                     }
                 ]
-            },
-            {
-                "conversation": [
-                    {
-                        "person": "Le Mage",
-                        "message": "Bravo, tu as tant appris !",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Tu sais maintenant reconnaître les outils qui respectent leurs utilisateurs, sécuriser tes données, choisir des technologies libres, et reprendre le contrôle de ta vie numérique.",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Mon heure est venue, à présent, c’est à toi de tracer ton propre chemin dans ce monde connecté…",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Mais tu ne seras jamais vraiment seul..",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Tu pourras compter sur les sages de Framasoft et Framalibre, pionniers du numérique émancipateur, et au Comptoir du Libre, un véritable marché du savoir où tu trouveras des alternatives libres pour presque tous les usages.",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Enfin, n’oublie jamais les érudits du NIRD, dont l’objectif est de bâtir un numérique inclusif, responsable et durable.",
-                        "triggerChoice": -1
-                    },
-                    {
-                        "person": "Le Mage",
-                        "message": "Ils t’aideront à poursuivre ta quête et à guider d’autres esprits vers un usage plus libre et conscient de la technologie.",
-                        "triggerChoice": -1
-                    }
-                ]
             }
         ]
     }
