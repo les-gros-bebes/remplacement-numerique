@@ -4,13 +4,41 @@
         "conversations": [
             {
                 "conversation": [
-                    { "person": "Le Mage", "message": "Salutations, jeunes esprits du lycée Michael Gutnic…", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Je viens d’un monde où chaque humain contrôle son destin numérique. Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Où vos gestes ne nourrissent pas d’immenses machines à profiler.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Où le doom-scroll n’existe pas.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Ce monde… vous en rêvez, n’est-ce pas ?", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Ce monde est possible.", "triggerChoice": false },
-                    { "person": "Le Mage", "message": "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce Grand Remplacement Numérique. Euh non, pardons je m’égare. Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.", "triggerChoice": false }
+                    {
+                        "person": "Le Mage",
+                        "message": "Salutations, jeunes esprits du lycée Michael Gutnic…",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Je viens d’un monde où chaque humain contrôle son destin numérique. Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Où vos gestes ne nourrissent pas d’immenses machines à profiler.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Où le doom-scroll n’existe pas.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Ce monde… vous en rêvez, n’est-ce pas ?",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Ce monde est possible.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce Grand Remplacement Numérique. Euh non, pardons je m’égare. Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.",
+                        "triggerChoice": -1
+                    }
                 ]
             }
         ]
@@ -21,15 +49,27 @@
             {
                 "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "hello ! where are we ?" },
-                    { "person": "person2", "message": "hello ! we are at the courtyard" }
+                    {
+                        "person": "person1",
+                        "message": "hello ! where are we ?"
+                    },
+                    {
+                        "person": "person2",
+                        "message": "hello ! we are at the courtyard"
+                    }
                 ]
             },
             {
                 "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "good morning ! where are we ?" },
-                    { "person": "person2", "message": "good morning ! we are at the courtyard" }
+                    {
+                        "person": "person1",
+                        "message": "good morning ! where are we ?"
+                    },
+                    {
+                        "person": "person2",
+                        "message": "good morning ! we are at the courtyard"
+                    }
                 ]
             }
         ]
@@ -39,11 +79,50 @@
         "conversations": [
             {
                 "conversation": [
-                    { "person": "Mme Marchéoff", "message": "Oh, te voilà.", "triggerChoice": false },
-                    { "person": "Mme Marchéoff", "message": "Regarde-moi ça…", "triggerChoice": false },
-                    { "person": "Mme Marchéoff", "message": "La moitié des ordinateurs ne démarrent plus. Écran bleus de la mort, temps de démarrage interminable, matériel trop vieux pour passer à Windows 11…", "triggerChoice": false  },
-                    { "person": "Mme Marchéoff", "message": "Je me demande…", "triggerChoice": false },
-                    { "person": "Mme Marchéoff", "message": "Doit-on vraiment continuer avec le même système d’exploitation ? Ou existe-t-il une alternative plus… maîtrisable ?", "triggerChoice": 0 }
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Oh, te voilà.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Regarde-moi ça…",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "La moitié des ordinateurs ne démarrent plus. Écran bleus de la mort, temps de démarrage interminable, matériel trop vieux pour passer à Windows 11…",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Je me demande…",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Doit-on vraiment continuer avec le même système d’exploitation ? Ou existe-t-il une alternative plus… maîtrisable ?",
+                        "triggerChoice": 0
+                    }
+                ]
+            },
+            {
+                "conversation": [
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Wow merci !",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Mais “mon Word” n’est plus disponible.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Marchéoff",
+                        "message": "Et Office 365 (en ligne), est complétement buggé ! Tu sais s’il existe une solution ?",
+                        "triggerChoice": 1
+                    }
                 ]
             }
         ]
@@ -54,15 +133,27 @@
             {
                 "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "hello ! where are we ?" },
-                    { "person": "person2", "message": "hello ! we are at the sports_hall" }
+                    {
+                        "person": "person1",
+                        "message": "hello ! where are we ?"
+                    },
+                    {
+                        "person": "person2",
+                        "message": "hello ! we are at the sports_hall"
+                    }
                 ]
             },
             {
                 "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "good morning ! where are we ?" },
-                    { "person": "person2", "message": "good morning ! we are at the sports_hall" }
+                    {
+                        "person": "person1",
+                        "message": "good morning ! where are we ?"
+                    },
+                    {
+                        "person": "person2",
+                        "message": "good morning ! we are at the sports_hall"
+                    }
                 ]
             }
         ]
@@ -73,15 +164,74 @@
             {
                 "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "hello ! where are we ?" },
-                    { "person": "person2", "message": "hello ! we are at the library" }
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Bienvenue au CDI !"
+                    },
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Ici, les élèves viennent chercher des informations pour leurs travaux.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Mais entre les pubs, les trackers et les sites douteux, naviguer devient un vrai casse-tête.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Et surtout, je ne supporte plus le moteur de recherche Google !!!",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Je fais une recherche sur le brainrot et l’instant d’après je suis inondé de publicités pour des calendriers de l’Avent Tralalero Tralala. As-tu une alternative ?",
+                        "triggerChoice": 0
+                    }
                 ]
             },
             {
-                "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "good morning ! where are we ?" },
-                    { "person": "person2", "message": "good morning ! we are at the library" }
+                    {
+                        "person": "Mme Cédéyi",
+                        "message": "Wow la navigation est déjà plus agréable. Mais comment aller encore plus loin ?",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Nous pouvons effectivement aller encore plus loin pour protéger ta vie privée et reprendre le contrôle de tes données.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Premièrement, choisis un navigateur qui respecte tes informations personnelles.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Firefox, par exemple, est libre et open source : il te permet de naviguer tout en limitant le suivi et en contrôlant ce que tu partages.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Si tu veux un niveau supplémentaire de protection, Tor Browser est une option : il masque ton adresse IP et chiffre ton trafic, rendant beaucoup plus difficile le suivi par des tiers.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Ensuite, des extensions peuvent renforcer ta sécurité. uBlock Origin bloque efficacement la publicité invasive et les scripts de suivi. Privacy Badger identifie et bloque automatiquement les traqueurs invisibles sur les sites que tu visites.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "ClearURLs supprime les paramètres inutiles dans les liens, empêchant que ton activité soit enregistrée lors de chaque clic. Tu peux aussi changer tes fournisseurs de DNS, pour utiliser quad9.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Avec ces outils combinés, tu réduis drastiquement ton exposition aux publicités ciblées, aux trackers et aux fuites de données.",
+                        "triggerChoice": -1
+                    }
                 ]
             }
         ]
@@ -90,17 +240,76 @@
         "place": "principal_office",
         "conversations": [
             {
-                "id": 1,
                 "conversation": [
-                    { "person": "person1", "message": "hello ! where are we ?" },
-                    { "person": "person2", "message": "hello ! we are at the principal_office" }
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "Bonjour !",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "Je suis content de te voir.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "Ici, nous gérons tous les comptes des élèves et du personnel.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "Mais je t’avoue… la sécurité n’est pas toujours optimale.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "Il faudrait que tu m’aides un peu.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "M. Nautkwaïtmaïtèmpeau",
+                        "message": "As-tu une idée pour conserver les mots de passe ?",
+                        "triggerChoice": 0
+                    }
                 ]
             },
             {
-                "id": 2,
                 "conversation": [
-                    { "person": "person1", "message": "good morning ! where are we ?" },
-                    { "person": "person2", "message": "good morning ! we are at the principal_office" }
+                    {
+                        "person": "Le Mage",
+                        "message": "Bravo, tu as tant appris !",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Tu sais maintenant reconnaître les outils qui respectent leurs utilisateurs, sécuriser tes données, choisir des technologies libres, et reprendre le contrôle de ta vie numérique.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Mon heure est venue, à présent, c’est à toi de tracer ton propre chemin dans ce monde connecté…",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Mais tu ne seras jamais vraiment seul..",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Tu pourras compter sur les sages de Framasoft et Framalibre, pionniers du numérique émancipateur, et au Comptoir du Libre, un véritable marché du savoir où tu trouveras des alternatives libres pour presque tous les usages.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Enfin, n’oublie jamais les érudits du NIRD, dont l’objectif est de bâtir un numérique inclusif, responsable et durable.",
+                        "triggerChoice": -1
+                    },
+                    {
+                        "person": "Le Mage",
+                        "message": "Ils t’aideront à poursuivre ta quête et à guider d’autres esprits vers un usage plus libre et conscient de la technologie.",
+                        "triggerChoice": -1
+                    }
                 ]
             }
         ]
