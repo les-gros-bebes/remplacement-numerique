@@ -1,6 +1,8 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
 import bgCdi from "/assets/cdi.png";
+import { Box } from "@mui/material";
+import Dialog from "../components/Dialog";
 
 const CdiPage: React.FC = () => {
   return (
@@ -10,6 +12,9 @@ const CdiPage: React.FC = () => {
       backgroundImage={bgCdi}
     >
       {/* Contenu spécifique pour les défis rétro */}
+      <Box sx={{ color: "#6B4AA5" }}>
+        <Dialog locationNumber={2} conversationIndex={0} />
+      </Box>
     </RoomLayout>
   );
 };

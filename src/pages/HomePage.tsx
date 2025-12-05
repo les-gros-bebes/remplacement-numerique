@@ -19,7 +19,7 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "class",
-    label: "Salle LibreOffice",
+    label: "Salle de classe - Libre office",
     route: "/classe",
     left: "11.2%",
     top: "18.9%",
@@ -28,7 +28,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "bureau",
-    label: "Salle Accessibilité & CryptPad",
+    label: "Bureau du directeur - Boss finale",
     route: "/bureau",
     left: "37.1%",
     top: "11.8%",
@@ -55,7 +55,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "yard",
-    label: "Préau – Bonnes actions",
+    label: "Préau – Moment détente",
     route: "/preau",
     left: "54.0%",
     top: "53.0%",
