@@ -43,8 +43,8 @@ const PreauPage: React.FC = () => {
 
   return (
     <RoomLayout
-      title="Préau – Bonnes actions"
-      subtitle="Liste et mets en pratique les bons réflexes numériques"
+      title="Préau – Moment détente"
+      subtitle="Fait une pause dans ton initiation"
       backgroundImage={bgPreau}
     >
       {/* Conteneur principal */}
