@@ -158,6 +158,7 @@ const HomePage: React.FC = () => {
                 style={{
                   animation: "spin 5s linear infinite",
                   position: "absolute",
+                  opacity: 0.8,
                   top: "50%",
                   left: "50%",
                   transform: "translateX(-50%) translateY(-50%)",
