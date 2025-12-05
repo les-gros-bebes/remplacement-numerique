@@ -1,6 +1,7 @@
 import React from "react";
 import RoomLayout from "../layout/RoomLayout";
 import bgGym from "/assets/salledesport.png";
+import FitCoach from "../components/FitCoach/FitCoach";
 
 const GymnasePage: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const GymnasePage: React.FC = () => {
       backgroundImage={bgGym}
     >
       {/* Contenu spécifique du défi Décathlon */}
+      <FitCoach />
     </RoomLayout>
   );
 };
