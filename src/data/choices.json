@@ -3,17 +3,17 @@
         "place": "school",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "question": "school choice n1", "answer": "response 1" },
-                    { "question": "school choice n2", "answer": "response 2" }
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "school choice n1", "score_value": 10 },
-                    { "label": "school choice n2", "score_value": 5 }
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": true
+                    },
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": false
+                    }
                 ]
             }
         ]
@@ -22,21 +22,17 @@
         "place": "courtyard",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "courtyard choice n1", "score_value": 10 },
-                    { "label": "courtyard choice n2", "score_value": 5 },
-                    { "label": "courtyard choice n3", "score_value": 15 },
-                    { "label": "courtyard choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "courtyard choice n1", "score_value": 10 },
-                    { "label": "courtyard choice n2", "score_value": 5 },
-                    { "label": "courtyard choice n3", "score_value": 15 },
-                    { "label": "courtyard choice n4", "score_value": 20}
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": true
+                    },
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": false
+                    }
                 ]
             }
         ]
@@ -46,8 +42,30 @@
         "choices": [
             {
                 "choice": [
-                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
-                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
+                    {
+                        "label": "On devrait basculer sur un système plus libre.",
+                        "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux ! Ressource associée: https://eylenburg.github.io/linux_comparison.htm",
+                        "isCorrect": true
+                    },
+                    {
+                        "label": "On devrait rester sur Windows.",
+                        "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi. Ressource Associée https://nird.forge.apps.education.fr/linux/",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "choice": [
+                    {
+                        "label": "Oui bien-sûr, la suite Google Workspace (Docs, Slides, Sheets) !",
+                        "answer": "Bouuuuh ! Très mauvais choix ! La suite Google est directement hergé sur des serveurs aux Etats-Unis, et Google utilise les données pour nourrir son modèle Gemini ! Ressource associée: https://proton.me/fr/blog/is-google-docs-secure",
+                        "isCorrect": false
+                    },
+                    {
+                        "label": "On pourrait remplacer par une solution compatible mais open-source ?",
+                        "answer": "Tout à fait, tu as par exemple LibreOffice ou OnlyFans, oups pardon OnlyOffice. Sinon, si tu es un putain de nerd tu peux te renseigner sur Cryptpad, l’alternative cocorico chiffrée de bout-en-out ! Ressource associée: https://www.onlyoffice.com/blog/fr/2018/08/onlyoffice-vs-libreoffice-que-choisir-si-vous-decidez-de-laisser-tomber-microsoft",
+                        "isCorrect": true
+                    }
                 ]
             }
         ]
@@ -56,21 +74,17 @@
         "place": "sports_hall",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "sports_hall choice n1", "score_value": 10 },
-                    { "label": "sports_hall choice n2", "score_value": 5 },
-                    { "label": "sports_hall choice n3", "score_value": 15 },
-                    { "label": "sports_hall choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "sports_hall choice n1", "score_value": 10 },
-                    { "label": "sports_hall choice n2", "score_value": 5 },
-                    { "label": "sports_hall choice n3", "score_value": 15 },
-                    { "label": "sports_hall choice n4", "score_value": 20}
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": true
+                    },
+                    {
+                        "label": "None",
+                        "answer": "None",
+                        "isCorrect": false
+                    }
                 ]
             }
         ]
@@ -79,21 +93,17 @@
         "place": "library",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "library choice n1", "score_value": 10 },
-                    { "label": "library choice n2", "score_value": 5 },
-                    { "label": "library choice n3", "score_value": 15 },
-                    { "label": "library choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "library choice n1", "score_value": 10 },
-                    { "label": "library choice n2", "score_value": 5 },
-                    { "label": "library choice n3", "score_value": 15 },
-                    { "label": "library choice n4", "score_value": 20}
+                    {
+                        "label": "Oui bien-sûr ! Bing, mon bien-aimé !",
+                        "answer": "Le savais-tu ? Bing est détenu par Microsoft, une alternative certainement pas mieux que Google….",
+                        "isCorrect": false
+                    },
+                    {
+                        "label": "Et si on utilisait QWant ?",
+                        "answer": "Pas mal non ? c’est français madame ! Eh oui ! QWant protège la liberté de ses utilisateurs en ligne. Mais il existe également DuckDuckGo par exemple.",
+                        "isCorrect": true
+                    }
                 ]
             }
         ]
@@ -102,21 +112,17 @@
         "place": "principal_office",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "principal_office choice n1", "score_value": 10 },
-                    { "label": "principal_office choice n2", "score_value": 5 },
-                    { "label": "principal_office choice n3", "score_value": 15 },
-                    { "label": "principal_office choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "principal_office choice n1", "score_value": 10 },
-                    { "label": "principal_office choice n2", "score_value": 5 },
-                    { "label": "principal_office choice n3", "score_value": 15 },
-                    { "label": "principal_office choice n4", "score_value": 20}
+                    {
+                        "label": "On pourrait utiliser les serveurs du lycée pour héberger une solution de gestion de mots de passe ?",
+                        "answer": "Excellente idée ! Héberger un outil comme Bitwarden sur vos propres serveurs, c’est garantir que les données restent chez vous et ne dépendent pas d’un service externe. Chaque utilisateur peut générer des mots de passe uniques et complexes, tout en restant facile à gérer.",
+                        "isCorrect": true
+                    },
+                    {
+                        "label": "On pourrait donner des calepins au personnel et post-its pour prendre note des mots de passe",
+                        "answer": "Les mots de passe écrits sur papier peuvent facilement être perdus ou consultés par des personnes non autorisées. Cela réduit considérablement la sécurité globale et expose le lycée à des risques d’intrusion.",
+                        "isCorrect": false
+                    }
                 ]
             }
         ]
