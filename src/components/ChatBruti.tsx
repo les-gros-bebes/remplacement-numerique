@@ -45,12 +45,21 @@ export default function ChatBruti() {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (!el) return;
+
+    const timeout = setTimeout(() => {
+      el.scrollTop = el.scrollHeight;
+    }, 10);
+
+    return () => clearTimeout(timeout);
   }, [messages]);
 
   return (
     <Box>
-      <Paper sx={{ maxHeight: 800, overflowY: "auto" }} ref={scrollRef}>
+      <Paper
+        sx={{ maxHeight: "75vh", maxWidth: 400, overflowY: "auto" }}
+        ref={scrollRef}
+      >
         <Stack spacing={2}>
           <Box
             sx={{
@@ -97,6 +106,7 @@ export default function ChatBruti() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyPress}
+          sx={{ color: "black" }}
         />
         <IconButton color="primary" onClick={sendMessage}>
           <SendIcon />

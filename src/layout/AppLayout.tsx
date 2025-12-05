@@ -1,9 +1,12 @@
-// AppLayout.tsx
-
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import { Link, Outlet } from "react-router";
+import { Box, Button, Paper } from "@mui/material";
+import { Outlet } from "react-router";
+import ChatBruti from "../components/ChatBruti";
+import { useState } from "react";
+import ChatIcon from "@mui/icons-material/Chat";
 
 export default function AppLayout() {
+  const [chatOn, setChatOn] = useState(true);
+
   return (
     <Box
       sx={{
@@ -12,40 +15,40 @@ export default function AppLayout() {
         minHeight: "100vh",
       }}
     >
-      <AppBar position="static">
-        <Toolbar disableGutters sx={{ px: 2 }}>
-          <Typography
-            variant="h6"
-            component={Link}
-            to="/"
-            sx={{ color: "inherit", textDecoration: "none" }}
-          >
-            Remplacement Numérique
-          </Typography>
-
-          <Box sx={{ flexGrow: 1 }} />
-
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              color="inherit"
-              component={Link}
-              to="/404"
-              sx={{ textTransform: "none" }}
-            >
-              404
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <Outlet />
 
       <Box
         sx={{
-          flex: 1,
-          width: "100%",
-          minHeight: 0,
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "end",
+          zIndex: 1,
         }}
       >
-        <Outlet />
+        <Box>
+          {chatOn && (
+            <Paper elevation={0} sx={{ margin: 1, padding: 1 }}>
+              <ChatBruti />
+            </Paper>
+          )}
+        </Box>
+        <Button
+          sx={{
+            borderRadius: "50%",
+            width: "fit-content",
+            aspectRatio: "1",
+            backgroundColor: "black",
+            opacity: 0.7,
+            mb: 1,
+            mr: 1,
+          }}
+          onClick={() => setChatOn(!chatOn)}
+        >
+          <ChatIcon />
+        </Button>
       </Box>
     </Box>
   );
