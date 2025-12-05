@@ -5,6 +5,8 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import lyceeMap from "/assets/planecole.png";
 import WizardIntro from "../components/WizardIntro";
+import Star from "/assets/star.png";
+import useSavedState from "../utils/useSavedState";
 
 type Hotspot = {
   id: string;
@@ -68,6 +70,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const [visited, setVisited] = useSavedState("visited", [0, 0, 0, 0, 0]);
 
   // 🔧 Active/désactive l’intro (en prod tu peux mettre true, en dev false si besoin)
   const INTRO_ENABLED = true;
@@ -122,10 +125,17 @@ const HomePage: React.FC = () => {
       {/* HOTSPOTS desktop – seulement après l’intro */}
       {introDone &&
         !isSmall &&
-        HOTSPOTS.map((spot) => (
+        HOTSPOTS.map((spot, index) => (
           <Box
             key={spot.id}
-            onClick={() => navigate(spot.route)}
+            onClick={() => {
+              navigate(spot.route);
+              setVisited((prev) => {
+                const newVisited = [...prev];
+                newVisited[index] = 1;
+                return newVisited;
+              });
+            }}
             sx={{
               position: "absolute",
               left: spot.left,
@@ -141,6 +151,21 @@ const HomePage: React.FC = () => {
               },
             }}
           >
+            {visited[index] === 1 && (
+              <img
+                src={Star}
+                height={"40%"}
+                style={{
+                  animation: "spin 5s linear infinite",
+                  position: "absolute",
+                  opacity: 0.8,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(-50%) translateY(-50%)",
+                }}
+              />
+            )}
+
             <Box
               sx={{
                 position: "absolute",

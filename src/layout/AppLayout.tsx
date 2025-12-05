@@ -5,7 +5,7 @@ import { useState } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 
 export default function AppLayout() {
-  const [chatOn, setChatOn] = useState(true);
+  const [chatOn, setChatOn] = useState(false);
 
   return (
     <Box
