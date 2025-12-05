@@ -11,6 +11,7 @@ const CdiPage: React.FC = () => {
       subtitle="Plonge dans l’histoire du numérique et ses enjeux"
       backgroundImage={bgCdi}
     >
+      {/* Contenu spécifique pour les défis rétro */}
       <AS400Terminal />
     </RoomLayout>
   );
