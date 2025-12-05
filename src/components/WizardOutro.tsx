@@ -10,7 +10,7 @@ type WizardOutroProps = {
 
 const MESSAGES: string[] = [
   "Bravo, tu as tant appris ! Tu sais maintenant reconnaître les outils qui respectent leurs utilisateurs, sécuriser tes données, choisir des technologies libres, et reprendre le contrôle de ta vie numérique. Mon heure est venue, à présent, c’est à toi de tracer ton propre chemin dans ce monde connecté…",
-  "ais tu ne seras jamais vraiment seul.. Tu pourras compter sur les sages de Framasoft et Framalibre, pionniers du numérique émancipateur, et au Comptoir du Libre, un véritable marché du savoir où tu trouveras des alternatives libres pour presque tous les usages. Enfin, n’oublie jamais les érudits du NIRD, dont l’objectif est de bâtir un numérique inclusif, responsable et durable. Ils t’aideront à poursuivre ta quête et à guider d’autres esprits vers un usage plus libre et conscient de la technologie.",
+  "Mais tu ne seras jamais vraiment seul.. Tu pourras compter sur les sages de Framasoft et Framalibre, pionniers du numérique émancipateur, et au Comptoir du Libre, un véritable marché du savoir où tu trouveras des alternatives libres pour presque tous les usages. Enfin, n’oublie jamais les érudits du NIRD, dont l’objectif est de bâtir un numérique inclusif, responsable et durable. Ils t’aideront à poursuivre ta quête et à guider d’autres esprits vers un usage plus libre et conscient de la technologie.",
 ];
 
 const WizardOutro: React.FC<WizardOutroProps> = ({ onFinish }) => {
