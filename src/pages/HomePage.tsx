@@ -19,7 +19,7 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "class",
-    label: "Salle de classeg",
+    label: "Salle LibreOffice",
     route: "/classe",
     left: "11.2%",
     top: "18.9%",
@@ -28,7 +28,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "bureau",
-    label: "Bureau du directeur – Boss final ",
+    label: "Salle Accessibilité & CryptPad",
     route: "/bureau",
     left: "37.1%",
     top: "11.8%",
@@ -100,6 +100,25 @@ const HomePage: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
+      {/* HEADER (actuellement vide / commenté) */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
+          textAlign: "center",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          px: 3,
+          py: 2,
+          borderRadius: 3,
+          backdropFilter: "blur(4px)",
+          maxWidth: "90vw",
+        }}
+      >
+        {/* Titre/texte si tu veux les remettre */}
+      </Box>
+
       {/* HOTSPOTS desktop – seulement après l’intro */}
       {introDone &&
         !isSmall &&
