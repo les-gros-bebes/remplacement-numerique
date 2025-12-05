@@ -30,7 +30,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "bureau",
-    label: "Bureau du directeur - Boss finale",
+    label: "Bureau du directeur - Boss final",
     route: "/bureau",
     left: "37.1%",
     top: "11.8%",
