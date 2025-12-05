@@ -45,21 +45,9 @@
         "place": "classroom",
         "choices": [
             {
-                "id": 1,
                 "choice": [
-                    { "label": "classroom choice n1", "score_value": 10 },
-                    { "label": "classroom choice n2", "score_value": 5 },
-                    { "label": "classroom choice n3", "score_value": 15 },
-                    { "label": "classroom choice n4", "score_value": 20}
-                ]
-            },
-            {
-                "id": 2,
-                "choice": [
-                    { "label": "classroom choice n1", "score_value": 10 },
-                    { "label": "classroom choice n2", "score_value": 5 },
-                    { "label": "classroom choice n3", "score_value": 15 },
-                    { "label": "classroom choice n4", "score_value": 20}
+                    { "label": "On devrait basculer sur un système plus libre.", "answer": "Très bon choix ! Linux offre un large choix de distribution plus ou moins ergonomiques. Tiens, prends cette rune ancienne qui t’aidera dans ta quête de vérité de Linux !", "isCorrect": true },
+                    { "label": "On devrait rester sur Windows.", "answer": "Tu as encore beaucoup à apprendre, suppôt de Bill Gates ! Lis ce parchemin et impregne toi", "isCorrect": false }
                 ]
             }
         ]

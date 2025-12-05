@@ -8,7 +8,12 @@ type WizardIntroProps = {
   onFinish: () => void;
 };
 
-const MESSAGES: string[] = [""];
+const MESSAGES: string[] = [
+  "Salutations, jeunes esprits du lycée Michael Gutnic…",
+  "Je viens d’un monde où chaque humain contrôle son destin numérique. <br />Un monde idéal… où nul ne vend ses données à Marc Sucrenberg. Où aucune fuite ne met en péril la vie d’un élève. <br> Où vos gestes ne nourrissent pas d’immenses machines à profiler. <br> Où le doom-scroll n’existe pas. <br> Ce monde… vous en rêvez, n’est-ce pas ?",
+  "Ce monde est <b>possible</b>.",
+  "Et vous allez m’aider à le façonner ici même, dans votre établissement. Ce <s>Grand Remplacement Numérique</s>. Euh non, pardons je m’égare.<br /> Allons ! Explorons ce lycée… et ouvrons ensemble la voie du NIRD : Numérique Inclusif, Responsable et Durable.",
+];
 
 const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
   const [step, setStep] = useState(0);
@@ -23,12 +28,15 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
     let index = 0;
     const interval = setInterval(() => {
       index++;
-      setDisplayedText(fullText.slice(0, index));
+
+      const safe = safeHtmlTyping(fullText, index);
+      setDisplayedText(safe);
+
       if (index >= fullText.length) {
         clearInterval(interval);
         setIsTyping(false);
       }
-    }, 25);
+    }, 15);
 
     return () => clearInterval(interval);
   }, [step]);
@@ -41,6 +49,19 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
     }
   };
 
+  function safeHtmlTyping(fullText: string, index: number): string {
+    let sliced = fullText.slice(0, index);
+
+    const lastOpen = sliced.lastIndexOf("<");
+    const lastClose = sliced.lastIndexOf(">");
+
+    if (lastOpen > lastClose) {
+      sliced = sliced.slice(0, lastOpen);
+    }
+
+    return sliced;
+  }
+
   const isLastStep = step === MESSAGES.length - 1;
 
   return (
@@ -49,11 +70,12 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
         position: "absolute",
         inset: 0,
         zIndex: 10,
-        backgroundColor: "rgba(0,0,0,0.35)", // léger voile
+        backgroundColor: "rgba(0,0,0,0.35)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        px: { xs: 2, md: 6 },
+        px: { xs: 1.5, sm: 2, md: 6 },
+        py: { xs: 2, md: 0 },
       }}
     >
       <Box
@@ -61,91 +83,49 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
           position: "relative",
           width: "100%",
           maxWidth: 1100,
-          height: "80vh",
+          minHeight: { xs: "auto", md: "70vh" },
           display: "flex",
+          flexDirection: { xs: "column-reverse", md: "row" }, // mobile : texte au-dessus
           alignItems: "center",
+          justifyContent: "space-between",
+          gap: { xs: 2, md: 4 },
         }}
       >
-        {/* Personnage à gauche, un peu coupé en bas */}
-        {/* Personnage à gauche, très grand et tronqué */}
-        <Box
-          sx={{
-            position: "absolute",
-            left: "-6%", // 👈 pousse plus à gauche
-            bottom: "-50px", // 👈 coupe encore plus le bas
-            height: "80vh", // hauteur visible (fenêtre de découpe)
-            width: { xs: "45%", md: "38%" }, // zone large pour que le perso occupe bien la gauche
-            overflow: "hidden", // coupe proprement
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            zIndex: 2,
-          }}
-        >
-          <Box
-            component="img"
-            src={wizardImg}
-            alt="Magicien du numérique responsable"
-            sx={{
-              height: "150%", // 👈 plus grand (augmente si tu veux)
-              width: "auto",
-              transform: "translateY(12%) translateX(-8%)",
-              // Y = pousse vers le bas → tranche plus
-              // X = pousse légèrement vers la gauche pour compenser le centrage
-              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
-            }}
-          />
-        </Box>
-
-        {/* Bandereau / panneau à droite */}
+        {/* Panneau texte */}
         <Paper
           elevation={8}
           sx={{
-            ml: { xs: 10, md: "30%" },
-            width: { xs: "70%", md: "60%" },
-            minHeight: { xs: 220, md: 280 },
+            flex: { xs: "1 1 auto", md: "0 0 55%" },
+            width: "100%",
+            minHeight: { xs: 260, md: 320 },
             p: { xs: 2.5, md: 4 },
-            backgroundColor: "#FDF5FF", // fond crème rosé
+            backgroundColor: "#FDF5FF",
+
+            // 🔥 Pour caler le bouton en bas :
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              color: "#6B4AA5",
-            }}
-          >
-            Remplacement numérique
-          </Typography>
-
-          <Typography
-            variant="subtitle1"
-            sx={{
-              mb: 2,
-              color: "#7A5BB5",
-            }}
-          >
-            Comment un établissement scolaire peut réduire ses dépendances
-            numériques ?
-          </Typography>
-
+          {/* Zone texte */}
           <Typography
             variant="body1"
             sx={{
-              minHeight: 80,
-              color: "#4A3B6D",
+              color: "#7A5BB5",
+              fontSize: { xs: "0.95rem", md: "1.05rem" },
+              flexGrow: 1, // ← pousse le bouton vers le bas
             }}
-          >
-            {displayedText}
-            {isTyping && <span>|</span>}
-          </Typography>
+            dangerouslySetInnerHTML={{
+              __html: displayedText + (isTyping ? "<span>|</span>" : ""),
+            }}
+          />
 
+          {/* Zone bouton (reste collée en bas) */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-              mt: 3,
+              mt: 2,
             }}
           >
             <Button
@@ -159,12 +139,35 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
                 "&:hover": {
                   backgroundColor: "#584092",
                 },
+                fontSize: { xs: "0.85rem", md: "0.95rem" },
               }}
             >
-              {isLastStep ? "Sélectionner ton parcours" : "Suivant"}
+              {isLastStep ? "Commencer ton aventure" : "Suivant"}
             </Button>
           </Box>
         </Paper>
+
+        {/* Magicien */}
+        <Box
+          sx={{
+            flex: { xs: "0 0 auto", md: "0 0 40%" },
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-start" },
+            alignItems: "flex-end",
+            mb: { xs: 1, md: 0 },
+          }}
+        >
+          <Box
+            component="img"
+            src={wizardImg}
+            alt="Magicien du numérique responsable"
+            sx={{
+              maxHeight: { xs: "35vh", sm: "45vh", md: "70vh" },
+              width: "auto",
+              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.6))",
+            }}
+          />
+        </Box>
       </Box>
     </Box>
   );
