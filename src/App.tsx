@@ -7,10 +7,12 @@ import BureauPage from "./pages/BureauPage";
 import CdiPage from "./pages/CdiPage";
 import GymnasePage from "./pages/GymnasePage";
 import PreauPage from "./pages/PreauPage";
+import { Navigate } from "react-router";
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/" element={<AppLayout />}>
         <Route path="home" element={<HomePage />} />
         <Route path="bureau" element={<BureauPage />} />
