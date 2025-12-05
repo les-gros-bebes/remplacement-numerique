@@ -1,8 +1,9 @@
 // src/components/WizardIntro.tsx
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Box, Typography, Button, Paper, IconButton } from "@mui/material";
 import wizardImg from "/assets/magicien.png"; // adapte le chemin
+import { playMageVoice } from "../utils/soundPlayer.ts";
 
 type WizardIntroProps = {
   onFinish: () => void;
@@ -27,6 +28,7 @@ const WizardIntro: React.FC<WizardIntroProps> = ({ onFinish }) => {
 
     let index = 0;
     const interval = setInterval(() => {
+      playMageVoice();
       index++;
 
       const safe = safeHtmlTyping(fullText, index);
